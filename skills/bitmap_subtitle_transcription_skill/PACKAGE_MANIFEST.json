@@ -1,0 +1,40 @@
+{
+  "skill_name": "bitmap_subtitle_transcription",
+  "display_name": "Bitmap Subtitle Transcription / Conversion",
+  "version": "1.0.0",
+  "release_status": "reconstructed from saved workflow specification; not byte-for-byte recovery of earlier artifact",
+  "created": "2026-09-03",
+  "manifest_policy": "PACKAGE_MANIFEST.json is not self-hashed.",
+  "files": [
+    {
+      "path": "LLM_INSTRUCTIONS.md",
+      "bytes": 2868,
+      "sha256": "50916b37a496324c2d31855dbcb562857cd56aa331994b848b1f04bde170d129"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2355,
+      "sha256": "8adb0fd35740e3180ed8c4870ba3d64d2a25e4f606145c3a81ca3fdf7410295c"
+    },
+    {
+      "path": "SKILL.md",
+      "bytes": 2608,
+      "sha256": "87e302412fee557416c0b952099fe3b63e18adde4fe5b6a859803bd22049ce0a"
+    },
+    {
+      "path": "TASK_INSTRUCTIONS.md",
+      "bytes": 1403,
+      "sha256": "d9249054d189eb86735ecea3feccdbc0258c3dd213b51ff2bf8fecae28e7053f"
+    },
+    {
+      "path": "scripts/Prepare-BitmapSubtitleTask.ps1",
+      "bytes": 9451,
+      "sha256": "633aee079b19c2ca1bfc2f14e9d8e35694c73f84354490d8164035d3d7a83208"
+    },
+    {
+      "path": "templates/TRANSCRIPTION_QA.md",
+      "bytes": 649,
+      "sha256": "5f3066187b99bfe935f45cfd78f912c3006bb3d6c68b8c9e2f376022447185e1"
+    }
+  ]
+}
