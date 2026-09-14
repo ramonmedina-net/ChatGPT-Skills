@@ -1,0 +1,126 @@
+{
+  "created_date": "2026-09-14",
+  "files": [
+    {
+      "bytes": 3495,
+      "path": "CHANGELOG.md",
+      "sha256": "a32160c633ec6422691ef59629d9b546c7d4866a3fa3ad140f71b83eb5967ced"
+    },
+    {
+      "bytes": 3504,
+      "path": "LLM_INSTRUCTIONS.md",
+      "sha256": "84f1b39d69163a7e8ef75f166f6ceaa0fd61e7f2adce84173349f48b774dfeda"
+    },
+    {
+      "bytes": 3125,
+      "path": "README.md",
+      "sha256": "5ee07172ccb334b477c8cf1d9fccf7dd8dbba1c5fdd338859d33327da7f18923"
+    },
+    {
+      "bytes": 33143,
+      "path": "SKILL.md",
+      "sha256": "95fe0d7005a26945830aa99a34d8e232a8fb30de477a4ea63b56fe2fcdf68625"
+    },
+    {
+      "bytes": 6,
+      "path": "VERSION",
+      "sha256": "78b591400c56b7b67b8cb3b2b8a8e65e9093897f02ce0878e6b5405c68620fa7"
+    },
+    {
+      "bytes": 513,
+      "path": "templates/ADJUDICATION_DECISION_TEMPLATE.json",
+      "sha256": "a48fbf8e1c75c9be66d8aa0e6c6f80864170f1843abf33202b39f7971a172b43"
+    },
+    {
+      "bytes": 295,
+      "path": "templates/CHECKPOINT_RECEIPT_TEMPLATE.json",
+      "sha256": "665de271c42fdedfbe3000c646949123a592cfccf8e9971791ad0145e60d0701"
+    },
+    {
+      "bytes": 355,
+      "path": "templates/COORDINATOR_STATE_TEMPLATE.md",
+      "sha256": "c62828ca07e89041dd62054a0967289b710a06df77eab84e8838d8c6585f4d11"
+    },
+    {
+      "bytes": 1264,
+      "path": "templates/EXECUTION_STATUS_TEMPLATE.json",
+      "sha256": "ffe13a5dbad774f8c54d3190b1a07f25c17a33af9748caa081e058dd9fc93a2e"
+    },
+    {
+      "bytes": 392,
+      "path": "templates/EXTERNAL_DEPENDENCIES_TEMPLATE.json",
+      "sha256": "1fbe1cb006ff0557c6cb437fc8a51e3fbd9bf7f6229f15a532b525db98d26130"
+    },
+    {
+      "bytes": 288,
+      "path": "templates/HISTORICAL_LOSS_LEDGER_TEMPLATE.csv",
+      "sha256": "46c8f96a813a0f2d1a066d9e518275ae24c7e5f139a4a78926ec7d5dca08d5fe"
+    },
+    {
+      "bytes": 586,
+      "path": "templates/INTEGRITY_RECONCILIATION_TEMPLATE.json",
+      "sha256": "21c7274402f0ab47ab4ac3a08d4e112ff62f985e4b0268b0ee23149f28d21ebc"
+    },
+    {
+      "bytes": 343,
+      "path": "templates/JUDGMENT_COMMIT_TEMPLATE.json",
+      "sha256": "1b6b02c614eef8e4dceb387654597df4b0d2076b4ef1e1a272797ec8615c5c6f"
+    },
+    {
+      "bytes": 461,
+      "path": "templates/JUDGMENT_READINESS_ATTESTATION_TEMPLATE.json",
+      "sha256": "ae3d89ece38270aafc60a9fe02c5b53b9ce04b98f0b6c1532397c4c74b701b23"
+    },
+    {
+      "bytes": 240,
+      "path": "templates/MATERIALIZATION_LEDGER_TEMPLATE.csv",
+      "sha256": "0c9d9523afce752cd93f5ffe14aa0b29d3d222fc3f125dbdf2d711c54683d6ba"
+    },
+    {
+      "bytes": 804,
+      "path": "templates/MICRO_BATCH_HANDOFF_TEMPLATE.md",
+      "sha256": "701a329ba9cb0eac2c02cc3571bc8d789c00251a1a1743711b29ae20582f69c2"
+    },
+    {
+      "bytes": 609,
+      "path": "templates/MODEL_ROLE_MAP_TEMPLATE.json",
+      "sha256": "9475ed80149a8fb94387af8c74f7e462bea96385d92745516a9f1eee0e10b0d9"
+    },
+    {
+      "bytes": 367,
+      "path": "templates/OPERATIONS_TELEMETRY_TEMPLATE.json",
+      "sha256": "a67dfab710cd691651561ba104d72a5b6976d5b9305491c22bcf228c924024b0"
+    },
+    {
+      "bytes": 699,
+      "path": "templates/PERSISTENCE_TEST_PROTOCOL.md",
+      "sha256": "646754629ac00163e3261646e68ed5cdc1a1856e28231b9214a7d76ee1fa6d56"
+    },
+    {
+      "bytes": 349,
+      "path": "templates/RECONSTRUCTION_LOSS_INVENTORY_TEMPLATE.json",
+      "sha256": "72146160cafe6efe5b7ceb73a4720fd1a43fda92d6770d68c6e9702bd0c28ea5"
+    },
+    {
+      "bytes": 882,
+      "path": "templates/RESUME_AFTER_INTERRUPTION_PROMPT.md",
+      "sha256": "dddfe1c23cb2a836f9eb05252a3134c6842aa6bd38208ad1355d2bcf0704fa33"
+    },
+    {
+      "bytes": 501,
+      "path": "templates/STORAGE_GROWTH_AUDIT_TEMPLATE.json",
+      "sha256": "643c152425700b1403ee6b281acd37869d4c595bf4b41d24c39e6b7a3965241d"
+    },
+    {
+      "bytes": 5158,
+      "path": "validate_package.py",
+      "sha256": "6ca2fcddeb6ae3080a7dbc2b37f86aad8b05a4ea6d45673881d10efa56149590"
+    }
+  ],
+  "manifest_policy": "PACKAGE_MANIFEST.json is not self-hashed; every other packaged file is listed.",
+  "package": "Phased Research Continuity Skill",
+  "predecessor_archive_sha256": "abbb321e8bba67210657b5dd9a5912f875d5e4c25947c24378d0c1a910009672",
+  "predecessor_version": "1.3.0",
+  "release_name": "Storage Architecture & Capability-Tiered Execution",
+  "version": "1.4.0"
+}

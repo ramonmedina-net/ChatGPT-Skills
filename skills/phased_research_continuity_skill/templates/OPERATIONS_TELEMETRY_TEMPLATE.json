@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "unit_id": "",
+  "stage": "",
+  "model_role": "workhorse|judgment|escalation_audit",
+  "model": "",
+  "reasoning_level": "",
+  "wall_clock_minutes": null,
+  "usage_meter_start_pct": null,
+  "usage_meter_end_pct": null,
+  "searches": 0,
+  "items": 0,
+  "decisions": 0,
+  "interruptions": 0,
+  "research_evidence": false,
+  "notes": ""
+}

@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "unit_id": "",
+  "artifact_or_capture_id": "",
+  "original_integrity_record": "",
+  "observed_mismatch": {
+    "recorded_sha256": "",
+    "actual_sha256": "",
+    "path": ""
+  },
+  "classification": "METADATA_ERROR|RAW_BYTE_MUTATION|MISSING_EVIDENCE|PATH_REFERENCE_ERROR|UNRESOLVED",
+  "raw_bytes_changed": null,
+  "duplicate_copy_found": null,
+  "structural_identity_verified": null,
+  "metadata_fields_corrected": [],
+  "historical_failed_record_preserved": null,
+  "revalidation_result": "",
+  "replacement_research_authorized": false,
+  "notes": ""
+}

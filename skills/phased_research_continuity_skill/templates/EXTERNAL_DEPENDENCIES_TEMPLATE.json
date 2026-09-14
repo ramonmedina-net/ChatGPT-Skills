@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "artifact_type": "operational_checkpoint_external_dependencies",
+  "checkpoint_id": "",
+  "project_root_locator": "",
+  "dependencies": [
+    {
+      "dependency_id": "",
+      "role": "",
+      "project_relative_path": "",
+      "sha256": "",
+      "bytes": 0,
+      "required": true,
+      "validation_status": "",
+      "reason_not_embedded": ""
+    }
+  ]
+}

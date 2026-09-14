@@ -1,0 +1,2 @@
+loss_record_id,reported_at,reported_progress,evidentiary_status,authoritative_search_execution,search_ids_recovered,raw_captures_recovered,source_records_recovered,adjudications_recovered,controlled_changes_recovered,notes
+LOSS-0001,,,unverified_historical_report_only,no,no,no,no,no,no,

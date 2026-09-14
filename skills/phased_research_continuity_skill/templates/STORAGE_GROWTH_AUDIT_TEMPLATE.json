@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0",
+  "artifact_id": "",
+  "file_count": 0,
+  "uncompressed_bytes": 0,
+  "archive_bytes": 0,
+  "bytes_by_category": {},
+  "duplicate_content_groups": [],
+  "duplicate_bytes_total": 0,
+  "nested_archive_count": 0,
+  "predecessor_checkpoint_zip_count": 0,
+  "duplicated_baseline_bytes": 0,
+  "raw_evidence_duplicate_bytes": 0,
+  "largest_files": [],
+  "predecessor_archive_bytes": 0,
+  "growth_ratio": null,
+  "runtime_debris_count": 0,
+  "result": "PASS|FAIL",
+  "notes": ""
+}

@@ -1,0 +1,52 @@
+{
+  "project": "",
+  "phase": "",
+  "unit_id": "",
+  "authoritative_predecessor": {
+    "filename": "",
+    "version": "",
+    "sha256": "",
+    "validation_status": "previously_validated"
+  },
+  "authorization": {
+    "scope": [],
+    "search_budget": 0,
+    "search_id_namespace": "",
+    "prohibited_work": []
+  },
+  "capability_routing": {
+    "current_stage": "",
+    "current_model_role": "",
+    "capability_class": "",
+    "judgment_readiness_attestation": ""
+  },
+  "execution": {
+    "searches_planned": 0,
+    "searches_executed": 0,
+    "capture_losses": 0,
+    "recovery_searches": 0,
+    "items_started": 0,
+    "items_completed": 0,
+    "last_completed_item": "",
+    "last_search_id": "",
+    "raw_captures": 0,
+    "sources_added": 0,
+    "provenance_rows": 0,
+    "controlled_changes": 0,
+    "judgment_items_committed": 0,
+    "materialization_items_applied": 0,
+    "materialization_blocks": 0
+  },
+  "durability": {
+    "working_root": "",
+    "writable": null,
+    "last_durable_update": "",
+    "checkpoint_status": "not_started",
+    "checkpoint_path": "",
+    "checkpoint_sha256": "",
+    "checkpoint_mode": "operational|portable|unset",
+    "external_dependency_ledger": "",
+    "storage_growth_audit": ""
+  },
+  "state": "initialized"
+}

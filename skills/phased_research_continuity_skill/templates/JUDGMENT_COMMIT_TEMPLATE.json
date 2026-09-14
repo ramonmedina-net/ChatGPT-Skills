@@ -1,0 +1,14 @@
+{
+  "schema_version": "1.0",
+  "unit_id": "",
+  "item_id": "",
+  "decision_artifact_path": "",
+  "decision_artifact_sha256": "",
+  "source_decision_count": 0,
+  "target_decision_count": 0,
+  "status_decision": "",
+  "clarification_searches_used": 0,
+  "unresolved_material_issues": [],
+  "timestamp": "",
+  "state": "JUDGMENT_ITEM_COMPLETE"
+}

@@ -1,0 +1,19 @@
+{
+  "decision_id": "",
+  "target_id": "",
+  "entity_type": "",
+  "entity_id": "",
+  "field": "",
+  "current_value": null,
+  "decision_action": "KEEP|CHANGE|PRESERVE_CONFLICT|SET_UNKNOWN|SET_NOT_FOUND|DEFER_FOLLOWUP",
+  "decided_value": null,
+  "evidence_status": "",
+  "change_type": "",
+  "supporting_staging_source_ids": [],
+  "supporting_staging_claim_ids": [],
+  "contradicting_staging_source_ids": [],
+  "attribution_requirement": "",
+  "limitation": "",
+  "reason": "",
+  "materialization_required": true
+}

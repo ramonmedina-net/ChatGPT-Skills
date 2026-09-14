@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "unit_id": "",
+  "stage": "",
+  "result": "PASS|FAIL",
+  "predecessor_identity_verified": null,
+  "frozen_plan_verified": null,
+  "search_capture_accounting_verified": null,
+  "capture_hashes_verified": null,
+  "staging_ids_unique": null,
+  "protected_authoritative_tables_unchanged": null,
+  "targets_count": 0,
+  "sources_count": 0,
+  "claims_count": 0,
+  "judgment_started": false,
+  "safe_for_judgment": null,
+  "notes": ""
+}

@@ -1,0 +1,14 @@
+{
+  "artifact_type": "recovery_loss_inventory",
+  "authoritative_predecessor": {
+    "filename": "",
+    "sha256": "",
+    "validation": ""
+  },
+  "last_reported_progress": [],
+  "recovered_substantive_artifacts": [],
+  "missing_artifacts": [],
+  "historical_reports_are_evidence": false,
+  "replacement_research_authorized": false,
+  "notes": ""
+}
