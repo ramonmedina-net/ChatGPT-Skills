@@ -1,6 +1,6 @@
 # Skill: Phased Research Continuity
-Version: 1.4.0
-Release: Storage Architecture & Capability-Tiered Execution
+Version: 1.5.0
+Release: Git-Native Governance & Judgment-Efficient Execution
 
 ## Purpose
 
@@ -13,20 +13,29 @@ Use this skill for complex research programs that:
 
 The skill governs **continuity, persistence, provenance, validation, and recovery**. It does not replace a project's substantive research protocol.
 
+The agent is disposable. The durable state is not. The model is interchangeable. Authority resides in validated artifacts, governed Git history, explicit decision boundaries, and human-approved promotion.
+
+The operational routing principle is:
+
+> The workhorse proves the inputs are intact. The judgment tier decides what the intact inputs mean. The workhorse applies the decisions.
+
 ---
 
 ## 1. Authority hierarchy
 
 Use this hierarchy unless the project explicitly defines a stricter one:
 
-1. latest independently validated immutable release/checkpoint;
-2. durable incremental working files descended from that artifact;
-3. retained raw evidence/captures and contemporaneous logs;
-4. machine-derived summaries reproduced from those files;
-5. progress reports/messages;
-6. conversational memory.
+1. latest accepted state on the protected authoritative branch, normally represented by a reviewed pull-request merge;
+2. latest independently validated immutable release/checkpoint;
+3. durable incremental working files descended from that artifact;
+4. retained raw evidence/captures and contemporaneous logs;
+5. machine-derived summaries reproduced from those files;
+6. progress reports/messages;
+7. conversational memory.
 
 Lower layers may explain higher layers but may not overwrite them without source-backed controlled change.
+
+A valid commit on an execution branch is proposed state, not accepted state, until it crosses the pull-request promotion boundary and is merged according to repository governance.
 
 **Conversation memory is never a substitute for missing evidence.**
 
@@ -208,6 +217,16 @@ Responsible for:
 - logging and preserving evidence;
 - producing the validated successor checkpoint;
 - stopping after the assigned unit.
+
+For Git-native projects, the execution agent works on a bounded execution branch, commits durable progress, pushes those commits, and may open a pull request. It must not write directly to the protected authoritative branch, force-push, delete governed branches, or merge its own authoritative work.
+
+The coordinator should inspect what actually landed in Git: the branch, commits, diff, CI results, validation logs, and provenance artifacts. A final narrative is not a substitute for independent inspection.
+
+The preferred promotion path is:
+
+`executor branch -> pull request -> coordinator review -> human final merge`
+
+The coordinator may approve or request changes but should not normally perform the final merge. Any exception must be an explicit project governance override.
 
 A coordinator conversation may be replaced. A Work/execution thread may be replaced. Neither replacement should threaten the research if the durable artifact chain is complete.
 
@@ -763,10 +782,14 @@ See `templates/MODEL_ROLE_MAP_TEMPLATE.json`.
 
 ### 25.2 Judgment budget is a protected resource
 
+Do not spend judgment-model budget on deterministic integrity verification. All J0/J1 continuity work belongs to the workhorse tier unless an explicit audit exception is recorded.
+
 Do not spend judgment-model capacity on:
 - hashes;
 - CRC;
 - row counts;
+- byte lengths;
+- schemas;
 - manifest validation;
 - archive traversal;
 - deterministic packaging;
@@ -774,15 +797,33 @@ Do not spend judgment-model capacity on:
 - deterministic source-ID allocation;
 - mechanical queue/status updates.
 
+This also includes Git state, branch identity, capture accounting, ID accounting, reference integrity, ZIP validation, LFS checks, CI readiness, and construction of a compact decision packet.
+
 A workhorse should validate and prepare these inputs first.
 
-The judgment role should consume a compact, validated decision packet.
+The judgment role should consume a compact, validated decision packet and should not traverse the full filesystem or rerun attested mechanical checks merely to rediscover the workspace.
+
+The authority boundary is normative:
+
+> A lower-cost or lower-authority model may detect ambiguity, but it must not silently resolve ambiguity outside explicit frozen rules.
+
+When an unplanned ambiguity is encountered, flag it, preserve the evidence, continue only unaffected work, and escalate it to the authorized judgment tier.
 
 ---
 
 ## 26. Frozen inter-model handoffs
 
 Every model-role transition should be mediated by durable artifacts, not only prose in chat.
+
+Before substantive execution at every stage:
+
+1. preserve the exact invocation prompt;
+2. hash it;
+3. create or append a machine-readable run record with model, skill-dependency, runtime, branch, and scope provenance;
+4. commit and push that provenance;
+5. only then begin substantive work.
+
+Prompt provenance is append-only. A correction prompt is a separate prompt and correction event; it never overwrites the original prompt or rewrites historical commits.
 
 Recommended pattern:
 
@@ -923,7 +964,9 @@ The attestation may cover:
 - absence of unauthorized modifications;
 - exact current stage.
 
-The judgment role should normally **trust a PASS attestation** rather than recomputing the same hashes/counts.
+For substantive judgment, prefer a machine-readable `JUDGMENT_READINESS_ATTESTATION.json` that also records expected case/item scope, frozen search/acquisition state, evidence availability, target count, protected authoritative-state hashes, packet completeness, unresolved ambiguity flags, allowed judgment scope, and any clarification reserve.
+
+The judgment role should verify the identity of the attestation and decision packet, then normally **trust a PASS attestation** rather than recomputing the same hashes/counts.
 
 Escalate only if:
 - the attestation reports a discrepancy;
@@ -985,6 +1028,14 @@ Use distinct storage roles where practical:
 5. **Portable releases** — self-contained milestone artifacts, flattened/deduplicated.
 
 Recommended external-dependency metadata is in `templates/EXTERNAL_DEPENDENCIES_TEMPLATE.json`.
+
+The current accepted cumulative structured state belongs directly in Git. Do not create recursive `v01/v02/v03/...` copies of the same cumulative tables. Historical accepted states are recovered through Git history and tags.
+
+For immutable evidence, prefer a content-addressed store such as:
+
+`evidence/objects/sha256/<prefix>/<sha256>.<ext>`
+
+Maintain an evidence index mapping each logical identity to its SHA-256, byte length, case/item, search or acquisition ID, source ID, legacy path when applicable, current Git path, and required/optional status. Use Git LFS for large or binary artifacts when configured and appropriate; an LFS pointer alone does not prove that the intended object is available.
 
 ### 30.1 Cryptographic ancestry, not recursive bytes
 
@@ -1091,3 +1142,89 @@ At phase completion:
 - produce immutable portable release or explicitly declared operational checkpoint;
 - independently validate;
 - hand off to next phase.
+
+---
+
+## 33. Git-native authority and promotion
+
+Git is part of the research governance boundary, not merely a transport mechanism.
+
+### 33.1 Authoritative branch
+
+The authoritative branch is usually `main`. It should be protected and contain accepted state only. Execution agents must not write to it directly, force-push it, delete it, or bypass its required review and CI controls.
+
+The current authoritative branch head is obtained from Git/GitHub. It should not be copied into self-referential metadata that is changed by the same commit.
+
+### 33.2 Execution branches
+
+Workhorse and judgment agents may create bounded execution branches such as `phase2/B05`, `migration/post-B04-baseline`, or `skill/<change>`. They may commit and push those branches within their authorization. A branch name is not evidence that the branch is accepted.
+
+### 33.3 Pull-request promotion boundary
+
+A pull request must expose every proposed authoritative change, preserve commit history, carry CI and validator results, and remain unmerged until explicit approval. The coordinator reviews the actual diff and logs. The human owner performs the final merge under the repository's protected-branch rules.
+
+### 33.4 Trusted-base plus candidate validation
+
+A proposed branch must not be able to weaken its own validator and thereby evade the governance policy that governed its starting state. When practical, CI runs:
+
+1. the validator trusted by the pull-request base commit; and
+2. the validator proposed by the candidate branch.
+
+This is monotonic validation: a pull request may strengthen future validation, but it cannot evade the base policy merely by editing the candidate validator. Workflow files and validation trust roots should be protected more strongly than ordinary research files where practical.
+
+### 33.5 Validator observability
+
+A validator must not merely exit successfully. Important sections must emit explicit telemetry so silently skipped checks are detectable. Use statuses such as:
+
+- `status_distribution=PASS`;
+- `referential_integrity=PASS`;
+- `provenance_references=PASS`;
+- `historical_loss_firewall=PASS`.
+
+Validation frameworks must distinguish a check that executed and passed, executed and failed, was skipped, or lacked a prerequisite. A silent no-op check is a defect.
+
+### 33.6 Self-reference-safe Git metadata
+
+Do not store the SHA of the commit containing a metadata record inside that same record. Use fields such as `recorded_through_commit`, `metadata_commit_self_excluded: true`, and `commit_list_scope`. Obtain the current branch or PR head from Git/GitHub. Do not create infinite metadata-update loops.
+
+### 33.7 Model, skill, and runtime provenance
+
+Every substantive run records the model at the level actually known:
+
+- `model_ui_label`;
+- `backend_model_identifier` (use `unavailable` when not exposed);
+- `model_role`;
+- `configuration`.
+
+It also records custom-skill dependencies separately from runtime capabilities. If a custom skill was invoked, record its repository, commit, path, version, and identity hash as available. If none was invoked, record an empty list. Never infer use merely because a skill exists nearby. OpenAI or backend-provided runtime skills are external runtime dependencies, not user-controlled skill artifacts.
+
+Runtime provenance may separately identify the execution environment, Git, Git LFS, GitHub CLI or connector, and explicitly authorized public web access. Do not invent unavailable backend identifiers.
+
+### 33.8 Dedicated execution identities
+
+Where practical, use a separate machine or bot identity with minimum repository permissions. Routine execution should have no repository-administration, force-push, direct protected-branch, or workflow-edit authority unless explicitly required. Human ownership remains the final governance control. Do not hard-code a project-specific account into this generic skill.
+
+## 34. Git micro-checkpoints and correction workflow
+
+Substantive work should be committed and pushed in bounded units. Examples include infrastructure preparation, search-plan freeze, an evidence-acquisition batch, one adjudicated case/item, deterministic materialization, and validation/reporting. A pushed commit is a durable external checkpoint; a local unpushed commit or chat progress message is not.
+
+For multi-case or multi-item judgment, prefer:
+
+`readiness gate -> judgment item -> commit/push -> next item -> materialization`
+
+Completed judgments must not remain only in model context. The workhorse may materialize frozen decisions, but it must stop and escalate if application requires substantive interpretation.
+
+If a coordinator review finds a defect:
+
+1. coordinator submits `REQUEST CHANGES`;
+2. executor receives an explicit correction prompt;
+3. correction prompt and event are preserved separately;
+4. historical commits are not rewritten;
+5. the fix is a new commit;
+6. CI reruns;
+7. coordinator re-reviews and may replace the blocking state with approval;
+8. the human owner performs the final merge.
+
+An infrastructure-only correction does not re-adjudicate research conclusions unless that scope is explicitly authorized.
+
+See the run, prompt, correction, handoff, and trusted-validation templates for machine-readable forms.

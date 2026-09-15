@@ -1,4 +1,4 @@
-# LLM Instructions — Phased Research Continuity v1.4.0
+# LLM Instructions — Phased Research Continuity v1.5.0
 
 Use this skill for research spanning multiple agents, models, sessions, usage windows, or workspaces where evidence/provenance must remain reproducible.
 
@@ -21,6 +21,15 @@ Use this skill for research spanning multiple agents, models, sessions, usage wi
 15. If integrity mismatches, determine byte corruption vs metadata corruption before repeating evidence acquisition.
 16. Preserve historical failed integrity records; repair current metadata through an auditable reconciliation rather than rewriting history.
 17. Operational checkpoints and portable releases are different artifact types; label them accurately.
+18. The authoritative branch is protected accepted state; execution branches are proposed state until promotion through a reviewed pull request.
+19. The executor may commit, push, and open a pull request but must not write to protected `main`, force-push, delete governed branches, or merge its own authoritative work.
+20. The coordinator reviews the actual Git diff, commits, CI, validator output, and provenance—not merely the executor's narrative. Human ownership performs the final merge.
+21. Preserve and hash the exact invocation prompt before substantive work; commit and push the provenance first. Correction prompts are separate append-only events.
+22. Do not spend judgment-model budget on deterministic integrity verification. The workhorse handles J0/J1 continuity work and constructs the validated decision packet.
+23. A lower-authority model may detect ambiguity but must not silently resolve it outside frozen rules. Escalate and preserve the evidence.
+24. A pushed commit is a durable external checkpoint; a local commit or chat update is not.
+25. Validate the trusted-base validator as well as the candidate validator when practical, and emit telemetry for executed, failed, skipped, and prerequisite-missing checks.
+26. Never store the SHA of a metadata-bearing commit inside that same metadata record; use `recorded_through_commit` and `metadata_commit_self_excluded`.
 
 ## Capability routing
 
@@ -51,6 +60,8 @@ When appropriate:
 
 The judgment model should consume a validated compact reading packet and should not rerun hashes, row counts, manifests, or archive checks absent a discrepancy.
 
+The readiness attestation should identify expected scope, frozen acquisition state, evidence and capture integrity, target counts, protected-state hashes, packet completeness, unresolved ambiguity flags, allowed judgment scope, and clarification reserve. The judgment tier verifies the attestation and packet identity instead of rediscovering the workspace.
+
 ## Durable handoffs
 
 Model-role changes should be mediated by files:
@@ -73,6 +84,18 @@ Prefer:
 
 Operational checkpoint dependencies must be declared by project-relative path, SHA-256, and byte length.
 
+Current accepted cumulative structured state lives directly in Git. Historical accepted states come from Git history and tags rather than recursive version directories. Immutable evidence should be content-addressed or hash-indexed; Git LFS may hold large/binary artifacts, but a pointer alone does not prove availability.
+
+Record model UI label, backend identifier or `unavailable`, role, and configuration. Record custom-skill dependencies separately from runtime dependencies; use an empty custom-skill list when none was invoked.
+
 ## Block-on-ambiguity
 
 If deterministic materialization requires substantive interpretation, do not guess. Record `BLOCKED_REQUIRES_JUDGMENT` (or project-equivalent) and return the item to the judgment tier.
+
+## Git-native promotion
+
+Use the flow:
+
+`executor branch -> pull request -> coordinator review -> human final merge`
+
+Do not merge the pull request as the execution agent. If review finds a defect, preserve a separate correction prompt/event, add a new commit, rerun CI, and re-review. Do not rewrite historical commits or re-adjudicate conclusions during an infrastructure-only correction.
