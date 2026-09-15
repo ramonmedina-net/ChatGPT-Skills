@@ -1,0 +1,39 @@
+{
+  "run_id": "BUILD-1.5.0-001",
+  "skill_name": "Phased Research Continuity",
+  "source_version": "1.4.0",
+  "target_version": "1.5.0",
+  "prompt_path": "prompts/phased-research-continuity/v1.5.0/001_INITIAL_PROMPT.md",
+  "prompt_sha256": "f146945163936ae156149477c2aeee1674e9e0d376777671c3685da73781258f",
+  "prompt_bytes": 26383,
+  "model_ui_label": "Luna Max",
+  "backend_model_identifier": "unavailable",
+  "model_role": "workhorse",
+  "starting_git_commit": "4f738207ffdf3fbad6f78ad063674cb233c3e99c",
+  "branch": "skill/phased-research-continuity-v1.5.0",
+  "start_timestamp": "2026-09-15T23:22:51.8200065Z",
+  "status": "in_progress",
+  "custom_skill_dependencies": [],
+  "runtime_capabilities_used": [
+    "filesystem",
+    "Git",
+    "Git LFS",
+    "GitHub CLI",
+    "bundled Python runtime",
+    "skill-creator system instructions"
+  ],
+  "web_research": false,
+  "preflight_validation": {
+    "validator": "skills/phased_research_continuity_skill/validate_package.py",
+    "authoritative_git_blob_package": "PASS",
+    "working_tree_package": "FAIL_PREEXISTING_CRLF_CHECKOUT_MISMATCH",
+    "working_tree_note": "Git blobs and manifest use LF; this Windows checkout has core.autocrlf=true and CRLF working-tree files."
+  },
+  "events": [
+    {
+      "event": "invocation_recorded",
+      "timestamp": "2026-09-15T23:22:51.8200065Z",
+      "status": "provenance_recorded"
+    }
+  ]
+}
