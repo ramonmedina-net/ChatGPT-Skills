@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.5.0 — 2026-09-15
+### Added
+- Git-native authority model separating protected accepted state, executor branches, pull-request promotion, coordinator review, and human final merge.
+- Prompt-first provenance with exact prompt preservation, SHA-256 identity, append-only run records, and separate correction events.
+- Durable pushed Git micro-checkpoints and interruption-resilient case/item-level judgment commits.
+- Judgment-efficient capability routing: deterministic J0/J1 work stays with the workhorse, while J3/J4 judgment is reserved for epistemically substantive decisions.
+- Workhorse-produced judgment-readiness attestations, compact decision packets, reading indexes, and evidence coverage matrices.
+- Trusted-base plus candidate validation doctrine and explicit validator observability statuses.
+- Content-addressed evidence-object index, Git LFS availability metadata, self-reference-safe Git fields, and explicit model/skill/runtime provenance.
+- Run, prompt, correction, decision-packet, Git handoff, trusted-validation, and evidence-index templates.
+
+### Changed
+- The authoritative current structured state is stored directly in Git; historical accepted states are recovered through history and tags rather than recursive cumulative copies.
+- A lower-authority model may flag ambiguity but may not silently resolve it outside frozen rules.
+- The judgment tier consumes validated packets and does not repeat deterministic integrity work unless an attestation is suspect.
+- Infrastructure corrections are new commits with CI reruns and re-review; historical commits are not rewritten and research conclusions are not re-adjudicated without explicit authorization.
+
+### Preserved
+- v1.4.0 continuity, recovery, storage, capability-tier, readiness, adjudication, materialization, integrity-reconciliation, and operational-versus-portable-release behavior.
+
 ## 1.4.0 — 2026-09-14
 ### Added
 - Non-recursive operational-checkpoint architecture.

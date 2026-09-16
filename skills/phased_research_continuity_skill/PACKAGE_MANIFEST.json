@@ -1,55 +1,70 @@
 {
-  "created_date": "2026-09-14",
+  "created_date": "2026-09-15",
   "files": [
     {
-      "bytes": 3495,
+      "bytes": 5368,
       "path": "CHANGELOG.md",
-      "sha256": "a32160c633ec6422691ef59629d9b546c7d4866a3fa3ad140f71b83eb5967ced"
+      "sha256": "4220ef98c93f2b5a2b6d8e2d4aef9a662db20d2ec1eb31f072530d072f7e66a9"
     },
     {
-      "bytes": 3504,
+      "bytes": 6180,
       "path": "LLM_INSTRUCTIONS.md",
-      "sha256": "84f1b39d69163a7e8ef75f166f6ceaa0fd61e7f2adce84173349f48b774dfeda"
+      "sha256": "668189b1e1aeda28a4d6d4fdb829d627550b9bd2f82561ef3e49010d926f9459"
     },
     {
-      "bytes": 3125,
+      "bytes": 4379,
       "path": "README.md",
-      "sha256": "5ee07172ccb334b477c8cf1d9fccf7dd8dbba1c5fdd338859d33327da7f18923"
+      "sha256": "17d40f744e01086c26dd522d65c3f0db0de69ea9f43193db9cdf4e6ec83ec5fe"
     },
     {
-      "bytes": 33143,
+      "bytes": 42277,
       "path": "SKILL.md",
-      "sha256": "95fe0d7005a26945830aa99a34d8e232a8fb30de477a4ea63b56fe2fcdf68625"
+      "sha256": "3798b60108ab15c4f9a93cabef564a830e9f0899a34b24aa70a18c9f3388a321"
     },
     {
-      "bytes": 6,
-      "path": "VERSION",
-      "sha256": "78b591400c56b7b67b8cb3b2b8a8e65e9093897f02ce0878e6b5405c68620fa7"
-    },
-    {
-      "bytes": 513,
+      "bytes": 869,
       "path": "templates/ADJUDICATION_DECISION_TEMPLATE.json",
-      "sha256": "a48fbf8e1c75c9be66d8aa0e6c6f80864170f1843abf33202b39f7971a172b43"
+      "sha256": "fa8e7425fc91aa8dbe9ea2fccdbf942f6c6605a2db7f778732bd082f33453207"
     },
     {
-      "bytes": 295,
+      "bytes": 692,
       "path": "templates/CHECKPOINT_RECEIPT_TEMPLATE.json",
-      "sha256": "665de271c42fdedfbe3000c646949123a592cfccf8e9971791ad0145e60d0701"
+      "sha256": "6a09eecbd7c6be5181c8048c93b312d50b11f46d42d84232b7c59ad318913936"
     },
     {
-      "bytes": 355,
+      "bytes": 825,
       "path": "templates/COORDINATOR_STATE_TEMPLATE.md",
-      "sha256": "c62828ca07e89041dd62054a0967289b710a06df77eab84e8838d8c6585f4d11"
+      "sha256": "c7d138c5922546e500c21a020db6a9a088433b0bc34cb95946bb6d7108fe89f9"
     },
     {
-      "bytes": 1264,
+      "bytes": 613,
+      "path": "templates/CORRECTION_RUN_EVENT_TEMPLATE.json",
+      "sha256": "13e8f3d35abf5da4a46df66c44762ef85557950ae00cf056a051a11409ee4a7f"
+    },
+    {
+      "bytes": 837,
+      "path": "templates/DECISION_PACKET_TEMPLATE.json",
+      "sha256": "45411db95d0f3fd0c32d6477258d29d8cb15ec86916e18930366b4d6cf9fa324"
+    },
+    {
+      "bytes": 164,
+      "path": "templates/EVIDENCE_OBJECT_INDEX_TEMPLATE.csv",
+      "sha256": "94152b585285463cddf951c6c3e71d1530548e99369ba61b755c3692d0d2f432"
+    },
+    {
+      "bytes": 2008,
       "path": "templates/EXECUTION_STATUS_TEMPLATE.json",
-      "sha256": "ffe13a5dbad774f8c54d3190b1a07f25c17a33af9748caa081e058dd9fc93a2e"
+      "sha256": "ec7491c8799c55e3d120b033bfa616aae25faa41af980a851dfdb19379a9a7cc"
     },
     {
-      "bytes": 392,
+      "bytes": 551,
       "path": "templates/EXTERNAL_DEPENDENCIES_TEMPLATE.json",
-      "sha256": "1fbe1cb006ff0557c6cb437fc8a51e3fbd9bf7f6229f15a532b525db98d26130"
+      "sha256": "b8b7d68a2ec20476d1c2334f2a4e64d9603b82d941e75439479a6152b067320b"
+    },
+    {
+      "bytes": 907,
+      "path": "templates/GIT_MICRO_CHECKPOINT_HANDOFF_TEMPLATE.md",
+      "sha256": "c0ea650e803e37663ccc1aadbeb547c4be408b0289c1b2f3dbfa48aa21bf9fd7"
     },
     {
       "bytes": 288,
@@ -57,44 +72,49 @@
       "sha256": "46c8f96a813a0f2d1a066d9e518275ae24c7e5f139a4a78926ec7d5dca08d5fe"
     },
     {
-      "bytes": 586,
+      "bytes": 660,
       "path": "templates/INTEGRITY_RECONCILIATION_TEMPLATE.json",
-      "sha256": "21c7274402f0ab47ab4ac3a08d4e112ff62f985e4b0268b0ee23149f28d21ebc"
+      "sha256": "a4fa1364edf9587739dd78437680909b2d49da5a4d2332190c447e703d164be5"
     },
     {
-      "bytes": 343,
+      "bytes": 637,
       "path": "templates/JUDGMENT_COMMIT_TEMPLATE.json",
-      "sha256": "1b6b02c614eef8e4dceb387654597df4b0d2076b4ef1e1a272797ec8615c5c6f"
+      "sha256": "60654ab7f955ba8a1da3c97fde658d9bbb01b41783d5395a77204592f31b2273"
     },
     {
-      "bytes": 461,
+      "bytes": 945,
       "path": "templates/JUDGMENT_READINESS_ATTESTATION_TEMPLATE.json",
-      "sha256": "ae3d89ece38270aafc60a9fe02c5b53b9ce04b98f0b6c1532397c4c74b701b23"
+      "sha256": "b50d136f5cfc8d420f1f14eadbe4dd5bac3ab982f7140245a28cb0ada796f813"
     },
     {
-      "bytes": 240,
+      "bytes": 283,
       "path": "templates/MATERIALIZATION_LEDGER_TEMPLATE.csv",
-      "sha256": "0c9d9523afce752cd93f5ffe14aa0b29d3d222fc3f125dbdf2d711c54683d6ba"
+      "sha256": "3cf88ff25549f86bbf1f2e429c9c95fb73861192f09637f237a4e18bda3942b6"
     },
     {
-      "bytes": 804,
+      "bytes": 1213,
       "path": "templates/MICRO_BATCH_HANDOFF_TEMPLATE.md",
-      "sha256": "701a329ba9cb0eac2c02cc3571bc8d789c00251a1a1743711b29ae20582f69c2"
+      "sha256": "9ab520dfcfbab690d880b4992c075a03e8bf2332e5e729d2b3e3424e02ea9ca2"
     },
     {
-      "bytes": 609,
+      "bytes": 903,
       "path": "templates/MODEL_ROLE_MAP_TEMPLATE.json",
-      "sha256": "9475ed80149a8fb94387af8c74f7e462bea96385d92745516a9f1eee0e10b0d9"
+      "sha256": "d425e5a9a03e74a34a87996c13e1205cbceefa88b4e21e3551d29a0386d5a24b"
     },
     {
-      "bytes": 367,
+      "bytes": 681,
       "path": "templates/OPERATIONS_TELEMETRY_TEMPLATE.json",
-      "sha256": "a67dfab710cd691651561ba104d72a5b6976d5b9305491c22bcf228c924024b0"
+      "sha256": "83119cbfaceaa0700c83624c14e8154fdfd72f8369ae95806db0cc379116a6dd"
     },
     {
       "bytes": 699,
       "path": "templates/PERSISTENCE_TEST_PROTOCOL.md",
       "sha256": "646754629ac00163e3261646e68ed5cdc1a1856e28231b9214a7d76ee1fa6d56"
+    },
+    {
+      "bytes": 463,
+      "path": "templates/PROMPT_PROVENANCE_TEMPLATE.json",
+      "sha256": "8b01c8511b37f55e1e6d66c74a6404e15d9a462d10ad157904b39b3374f97364"
     },
     {
       "bytes": 349,
@@ -107,20 +127,37 @@
       "sha256": "dddfe1c23cb2a836f9eb05252a3134c6842aa6bd38208ad1355d2bcf0704fa33"
     },
     {
-      "bytes": 501,
-      "path": "templates/STORAGE_GROWTH_AUDIT_TEMPLATE.json",
-      "sha256": "643c152425700b1403ee6b281acd37869d4c595bf4b41d24c39e6b7a3965241d"
+      "bytes": 1203,
+      "path": "templates/RUN_RECORD_TEMPLATE.json",
+      "sha256": "fe476afb66eb948a735d24bdcad57a629a635144a4976cd2a44c29aed75df6d6"
     },
     {
-      "bytes": 5158,
+      "bytes": 717,
+      "path": "templates/STORAGE_GROWTH_AUDIT_TEMPLATE.json",
+      "sha256": "2ecc9b1be04ed001db33266ebf770ba88dedf955f47a37e7ba80a46be2d42296"
+    },
+    {
+      "bytes": 947,
+      "path": "templates/TRUSTED_BASE_CANDIDATE_VALIDATION_TEMPLATE.md",
+      "sha256": "ffe2be1794f555e1b2af3336e60b51887a828049d75aba98b0f69d326e2a0dea"
+    },
+    {
+      "bytes": 10675,
       "path": "validate_package.py",
-      "sha256": "6ca2fcddeb6ae3080a7dbc2b37f86aad8b05a4ea6d45673881d10efa56149590"
+      "sha256": "4ae5b05c6e9b5c1436f842ee8f4fa755e66220f1067dfc4f311ada89c555034a"
+    },
+    {
+      "bytes": 6,
+      "path": "VERSION",
+      "sha256": "acb57a7135b2d7d6e665f67f056e21353023b93835f54def1ae523bf76f1bfb3"
     }
   ],
-  "manifest_policy": "PACKAGE_MANIFEST.json is not self-hashed; every other packaged file is listed.",
+  "manifest_policy": "PACKAGE_MANIFEST.json is not self-hashed; every other packaged file is listed. Manifest hashes use canonical LF package bytes.",
   "package": "Phased Research Continuity Skill",
-  "predecessor_archive_sha256": "abbb321e8bba67210657b5dd9a5912f875d5e4c25947c24378d0c1a910009672",
-  "predecessor_version": "1.3.0",
-  "release_name": "Storage Architecture & Capability-Tiered Execution",
-  "version": "1.4.0"
+  "predecessor_archive_sha256": null,
+  "predecessor_archive_note": "No v1.4.0 archive is committed; predecessor identity is anchored to the v1.4.0 source commit below without guessing an archive hash.",
+  "predecessor_source_commit": "4f738207ffdf3fbad6f78ad063674cb233c3e99c",
+  "predecessor_version": "1.4.0",
+  "release_name": "Git-Native Governance & Judgment-Efficient Execution",
+  "version": "1.5.0"
 }
