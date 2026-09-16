@@ -12,7 +12,10 @@
   "starting_git_commit": "4f738207ffdf3fbad6f78ad063674cb233c3e99c",
   "branch": "skill/phased-research-continuity-v1.5.0",
   "start_timestamp": "2026-09-15T23:22:51.8200065Z",
-  "status": "in_progress",
+  "recorded_through_commit": "8d905db",
+  "metadata_commit_self_excluded": true,
+  "commit_list_scope": "013d5ec, be31aee, f502b39, f3b5a93, 8d905db; final metadata commit excluded",
+  "status": "completed",
   "custom_skill_dependencies": [],
   "runtime_capabilities_used": [
     "filesystem",
@@ -34,6 +37,30 @@
       "event": "invocation_recorded",
       "timestamp": "2026-09-15T23:22:51.8200065Z",
       "status": "provenance_recorded"
+    },
+    {
+      "event": "build_completed",
+      "timestamp": "2026-09-16T00:07:52.5778281Z",
+      "status": "completed",
+      "package_validation_result": "PASS",
+      "resulting_version": "1.5.0",
+      "changed_file_count": 29,
+      "last_substantive_commit": "8d905db",
+      "pr_number": 1,
+      "pr_url": "https://github.com/ramonmedina-net/ChatGPT-Skills/pull/1",
+      "current_branch": "skill/phased-research-continuity-v1.5.0",
+      "ci_status_at_recording": "pending_or_not_yet_observed"
     }
-  ]
+  ],
+  "completion": {
+    "completion_timestamp": "2026-09-16T00:07:52.5778281Z",
+    "package_validation_result": "PASS",
+    "resulting_version": "1.5.0",
+    "changed_file_count": 29,
+    "last_substantive_commit": "8d905db",
+    "pr_number": 1,
+    "pr_url": "https://github.com/ramonmedina-net/ChatGPT-Skills/pull/1",
+    "current_branch": "skill/phased-research-continuity-v1.5.0",
+    "human_final_merge_required": true
+  }
 }
