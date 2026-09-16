@@ -1,7 +1,15 @@
 {
+  "schema_version": "1.1",
   "project": "",
   "phase": "",
   "unit_id": "",
+  "checkpoint_type": "operational|portable|recovery|partial",
+  "authoritative_branch": "main",
+  "execution_branch": "",
+  "commit_pushed": "",
+  "recorded_through_commit": "",
+  "metadata_commit_self_excluded": true,
+  "commit_list_scope": "",
   "checkpoint_filename": "",
   "checkpoint_path": "",
   "sha256": "",
@@ -10,5 +18,10 @@
   "completed_items": 0,
   "searches_executed": 0,
   "timestamp": "",
-  "next_unit_authorization": "not_authorized_awaiting_review"
+  "next_unit_authorization": "not_authorized_awaiting_review",
+  "pull_request": {
+    "number": null,
+    "url": "",
+    "status": "not_open|open|approved|changes_requested|merged"
+  }
 }

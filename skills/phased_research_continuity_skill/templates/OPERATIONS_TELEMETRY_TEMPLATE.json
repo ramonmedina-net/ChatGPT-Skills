@@ -12,6 +12,12 @@
   "items": 0,
   "decisions": 0,
   "interruptions": 0,
+  "validation_checks": {
+    "status_distribution": "PASS|FAIL|SKIPPED|PREREQUISITE_MISSING",
+    "referential_integrity": "PASS|FAIL|SKIPPED|PREREQUISITE_MISSING",
+    "provenance_references": "PASS|FAIL|SKIPPED|PREREQUISITE_MISSING",
+    "historical_loss_firewall": "PASS|FAIL|SKIPPED|PREREQUISITE_MISSING"
+  },
   "research_evidence": false,
   "notes": ""
 }

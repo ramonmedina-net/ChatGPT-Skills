@@ -1,7 +1,32 @@
 {
+  "schema_version": "1.1",
   "project": "",
   "phase": "",
   "unit_id": "",
+  "git_governance": {
+    "authoritative_branch": "main",
+    "execution_branch": "",
+    "promotion_boundary": "pull_request",
+    "current_branch_head": "",
+    "recorded_through_commit": "",
+    "metadata_commit_self_excluded": true,
+    "commit_list_scope": "",
+    "pull_request": {
+      "number": null,
+      "url": "",
+      "review_state": "pending|approved|changes_requested|merged"
+    }
+  },
+  "provenance": {
+    "run_record_path": "",
+    "prompt_path": "",
+    "prompt_sha256": "",
+    "model_ui_label": "",
+    "backend_model_identifier": "unavailable",
+    "model_role": "",
+    "custom_skill_dependencies": [],
+    "runtime_dependencies": []
+  },
   "authoritative_predecessor": {
     "filename": "",
     "version": "",
@@ -18,7 +43,9 @@
     "current_stage": "",
     "current_model_role": "",
     "capability_class": "",
-    "judgment_readiness_attestation": ""
+    "judgment_readiness_attestation": "",
+    "decision_packet": "",
+    "reading_index": ""
   },
   "execution": {
     "searches_planned": 0,

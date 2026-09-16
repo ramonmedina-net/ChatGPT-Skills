@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "packet_id": "",
+  "unit_id": "",
+  "readiness_attestation_path": "",
+  "readiness_attestation_sha256": "",
+  "target_ids": [],
+  "current_accepted_values": [],
+  "staged_claims": [],
+  "source_capture_locators": [],
+  "material_conflicts": [],
+  "scope_constraints": [],
+  "permitted_decision_vocabulary": [
+    "KEEP",
+    "CHANGE",
+    "PRESERVE_CONFLICT",
+    "SET_UNKNOWN",
+    "SET_NOT_FOUND",
+    "DEFER_FOLLOWUP"
+  ],
+  "clarification_reserve": {
+    "available": 0,
+    "unit": "searches_or_queries",
+    "authorization": ""
+  },
+  "reading_index": [],
+  "evidence_coverage_matrix": [],
+  "protected_state_hashes": {},
+  "allowed_judgment_scope": [],
+  "packet_sha256": "",
+  "recorded_through_commit": "",
+  "metadata_commit_self_excluded": true,
+  "status": "FROZEN|SUPERSEDED",
+  "notes": ""
+}

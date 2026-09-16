@@ -2,13 +2,23 @@
   "schema_version": "1.0",
   "unit_id": "",
   "item_id": "",
+  "decision_packet_id": "",
   "decision_artifact_path": "",
   "decision_artifact_sha256": "",
+  "judgment_model_provenance": {
+    "model_ui_label": "",
+    "backend_model_identifier": "unavailable",
+    "model_role": "judgment",
+    "configuration": {}
+  },
   "source_decision_count": 0,
   "target_decision_count": 0,
   "status_decision": "",
   "clarification_searches_used": 0,
   "unresolved_material_issues": [],
   "timestamp": "",
+  "recorded_through_commit": "",
+  "metadata_commit_self_excluded": true,
+  "commit_list_scope": "",
   "state": "JUDGMENT_ITEM_COMPLETE"
 }

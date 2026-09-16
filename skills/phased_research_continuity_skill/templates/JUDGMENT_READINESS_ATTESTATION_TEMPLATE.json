@@ -1,8 +1,11 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "unit_id": "",
   "stage": "",
   "result": "PASS|FAIL",
+  "expected_case_or_item_scope": [],
+  "frozen_search_or_acquisition_state": "",
+  "evidence_availability": "",
   "predecessor_identity_verified": null,
   "frozen_plan_verified": null,
   "search_capture_accounting_verified": null,
@@ -12,7 +15,20 @@
   "targets_count": 0,
   "sources_count": 0,
   "claims_count": 0,
+  "protected_authoritative_state_hashes": {},
+  "packet_path": "",
+  "packet_sha256": "",
+  "packet_complete": null,
+  "unresolved_ambiguity_flags": [],
+  "allowed_judgment_scope": [],
+  "clarification_reserve": {
+    "available": 0,
+    "unit": "searches_or_queries",
+    "authorization": ""
+  },
   "judgment_started": false,
   "safe_for_judgment": null,
+  "recorded_through_commit": "",
+  "metadata_commit_self_excluded": true,
   "notes": ""
 }

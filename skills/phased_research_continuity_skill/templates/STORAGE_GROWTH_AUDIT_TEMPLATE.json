@@ -1,6 +1,11 @@
 {
   "schema_version": "1.0",
   "artifact_id": "",
+  "accepted_structured_state_in_git": true,
+  "evidence_store_mode": "content_addressed|hash_indexed|other",
+  "lfs_availability_checks": [],
+  "recorded_through_commit": "",
+  "metadata_commit_self_excluded": true,
   "file_count": 0,
   "uncompressed_bytes": 0,
   "archive_bytes": 0,
