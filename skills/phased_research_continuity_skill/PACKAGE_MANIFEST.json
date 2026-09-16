@@ -22,9 +22,9 @@
       "sha256": "39c4fcdc3fda725bb0ac030ee1614045b207e1b7402ae9c5e69796c78c53d8e3"
     },
     {
-      "bytes": 47158,
+      "bytes": 49868,
       "path": "SKILL.md",
-      "sha256": "336ebe957ae7b0382c85799ae0ed69abd0c9d93d482c199bb9960324345afb39"
+      "sha256": "2257b94a783f169140c2812137c1acf63328b9eb6d40508b1282c55749997ecd"
     },
     {
       "bytes": 869,
@@ -127,9 +127,9 @@
       "sha256": "72146160cafe6efe5b7ceb73a4720fd1a43fda92d6770d68c6e9702bd0c28ea5"
     },
     {
-      "bytes": 882,
+      "bytes": 1014,
       "path": "templates/RESUME_AFTER_INTERRUPTION_PROMPT.md",
-      "sha256": "dddfe1c23cb2a836f9eb05252a3134c6842aa6bd38208ad1355d2bcf0704fa33"
+      "sha256": "3db31baefa5a24b8ab2f2011355d7d9f22850bf7195d2ca917cb44cb1c61f1bd"
     },
     {
       "bytes": 1431,

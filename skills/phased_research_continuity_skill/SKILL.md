@@ -69,7 +69,7 @@ B03 inherits cumulative state from B02, while the original baseline remains pres
 
 ## 3. Validation levels
 
-### 3.1 Full validation — artifact creation/sealing
+### 3.1 Full validation — checkpoint creation/sealing
 
 Perform full independent validation when:
 - creating a new immutable checkpoint;
@@ -79,7 +79,7 @@ Perform full independent validation when:
 - the predecessor has not previously been validated.
 
 As applicable, check:
-- ZIP/archive CRC;
+- ZIP/archive CRC for artifact-native checkpoints and portable releases;
 - safe and unique paths;
 - manifest completeness;
 - SHA-256 and byte counts;
@@ -93,7 +93,7 @@ As applicable, check:
 - machine-summary reproduction;
 - project-specific completion requirements.
 
-Independently reopen the packaged artifact. Do not validate only the source directory that was packaged.
+When the selected checkpoint or release is packaged, independently reopen the packaged artifact. Do not validate only the source directory that was packaged. For a Git-native operational checkpoint, validate the pushed commit and its associated state, provenance, handoff, and validator evidence instead of inventing an archive.
 
 ### 3.2 Lightweight startup validation — consumption of a known checkpoint
 
@@ -179,7 +179,7 @@ Each unit should define before substantive work:
 A unit should be small enough that:
 - state can be persisted frequently;
 - a failure has bounded cost;
-- validation/packaging is feasible within the usage window.
+- validation, and packaging if required by the selected checkpoint mode, is feasible within the usage window.
 
 Do not optimize batch size upward after only one successful run. Use observed workload and failure history.
 
@@ -343,11 +343,13 @@ If usage, context length, tool availability, or workspace stability appears like
 3. record completed and partial items;
 4. record remaining budget;
 5. record last IDs;
-6. package a partial checkpoint if feasible;
-7. independently validate what was packaged;
+6. select the checkpoint mode and create the appropriate partial checkpoint if feasible;
+7. independently validate the selected checkpoint; when it is an artifact/archive, reopen and validate what was packaged;
 8. stop.
 
-Do not spend the final available execution time squeezing in extra research while leaving completed evidence unsealed.
+For Git-native mode, the partial checkpoint is a validated commit pushed to the execution branch with its state/provenance/handoff evidence. For artifact-native mode, package the partial checkpoint and independently validate the archive.
+
+Do not spend the final available execution time squeezing in extra research while leaving completed evidence unpersisted or an artifact checkpoint unsealed.
 
 A partial checkpoint must never masquerade as a completed release.
 
@@ -393,11 +395,12 @@ Use a separate historical-loss ledger with a status such as:
 Do not insert those reports into authoritative search logs.
 
 ### 11.5 Recovery checkpoint
-Package the intact predecessor plus:
+Create a recovery checkpoint in the selected mode. For artifact-native mode, package the intact predecessor plus:
 - loss inventory;
 - handoff;
 - relevant assignment/protocol;
-- validation metadata.
+- validation metadata;
+and independently validate the archive. For Git-native mode, commit and push the loss inventory, handoff, relevant assignment/protocol, validation metadata, and a reference to the intact predecessor.
 
 Label it clearly as incomplete. Never call it a completed successor release.
 
@@ -589,9 +592,17 @@ See `templates/EXECUTION_STATUS_TEMPLATE.json`.
 ## 17. Operational checkpoint vs portable release
 
 ### Operational checkpoint
-A durable continuation artifact optimized for resuming work inside a known persistent project environment.
+A durable continuation checkpoint optimized for resuming work inside a known persistent project environment. The operational form is mode-aware:
 
-It may represent:
+#### Git-native operational checkpoint
+
+A validated commit pushed to the authorized execution branch, accompanied by sufficient run state, prompt/model provenance, handoff, and validator evidence, may serve as the durable operational checkpoint. Its durable identity is the execution branch plus pushed commit identity; it does not require a checkpoint filename, archive, or ZIP manifest at every case, stage, or micro-batch.
+
+#### Artifact-native operational checkpoint
+
+For non-Git workflows, or projects that explicitly require sealed artifacts, retain the immutable checkpoint/archive workflow. The operational checkpoint is identified by its filename/path, SHA-256, byte length, and validation state. Independently reopen and validate the archive before treating it as the operational predecessor.
+
+Either operational form may represent:
 - a completed micro-batch;
 - a partial interrupted batch;
 - infrastructure reconstruction;
@@ -606,7 +617,7 @@ An operational checkpoint may depend on canonical immutable assets stored elsewh
 - required/optional status;
 - validation state.
 
-Its manifest must say that it is an operational checkpoint and **not** a portable release.
+An artifact-native checkpoint manifest must say that it is an operational checkpoint and **not** a portable release. A Git-native checkpoint records the equivalent mode and evidence in its run state/handoff rather than inventing an archive manifest.
 
 ### Portable release
 A phase-level or milestone-level artifact intended to remain usable after separation from the original project filesystem.
@@ -623,16 +634,13 @@ Never call an infrastructure checkpoint, recovery checkpoint, partial batch, or 
 
 ## 18. Checkpoint receipt and coordinator state
 
-After a checkpoint passes validation, write a small durable receipt containing:
-- checkpoint filename/path;
-- SHA-256;
-- validation status;
-- phase/unit;
-- completion timestamp;
-- high-level counts;
-- next authorization state.
+After a checkpoint passes validation, write a small durable receipt whose fields match the checkpoint mode:
+- all modes: checkpoint type/mode, phase/unit, completion timestamp, high-level counts, and next authorization state;
+- Git-native: execution branch, pushed commit identity, and validation/handoff/provenance evidence;
+- artifact-native: filename/path, SHA-256, byte length, and validation status;
+- portable release: sealed artifact identity and independent package-validation result, including SHA-256 and byte length where available.
 
-A coordinator-state document should point to the **latest validated checkpoint**, not merely the latest working directory.
+A coordinator-state document should point to the **latest validated checkpoint**, using commit identity for Git-native mode and artifact identity for artifact-native or portable mode, not merely the latest working directory.
 
 Do not authorize the next unit automatically unless the research plan explicitly permits it.
 
@@ -644,7 +652,7 @@ When a conversation reaches maximum length or must be replaced:
 
 - flush all durable state;
 - create a checkpoint where practical;
-- start fresh from the latest validated artifact;
+- start fresh from the latest validated checkpoint;
 - do not require the old transcript.
 
 **File continuity is mandatory. Conversation continuity is optional.**
@@ -680,7 +688,7 @@ Exclude from sealed artifacts unless explicitly required:
 
 ### 20.2 Storage-growth audit before sealing
 
-Before accepting a checkpoint/release, calculate where practical:
+Before accepting an artifact-native checkpoint or portable release, calculate where practical:
 - proposed archive file count;
 - compressed/uncompressed size;
 - bytes by major category;
@@ -698,7 +706,7 @@ Stop and investigate unexplained superlinear growth, large duplicate groups, or 
 ### 20.3 Operational checkpoint dependency validation
 
 An operational checkpoint validator should report separately:
-1. **internal archive integrity**; and
+1. **internal archive integrity**, when the selected checkpoint includes an archive;
 2. **external dependency integrity**.
 
 If a declared dependency is unavailable, report a dependency condition such as:
@@ -895,7 +903,7 @@ Continue independent mechanically safe work where allowed, but do not guess.
 
 For structured verification projects, prefer a split analogous to:
 
-`prepare -> plan -> acquire -> judge -> materialize -> package`
+`prepare -> plan -> acquire -> judge -> materialize -> checkpoint -> package_if_required`
 
 The names/stage letters are project-specific; the authority boundary is the important part.
 
@@ -915,7 +923,7 @@ It should not, by default:
 - allocate hundreds of authoritative IDs;
 - generate large provenance tables;
 - apply queue/status bookkeeping;
-- package the checkpoint.
+- create the selected checkpoint; package it only when artifact-native or portable-release mode requires packaging.
 
 ### 27.2 Decision ledger contract
 
@@ -1178,7 +1186,7 @@ At unit completion:
 At phase completion:
 - run project-specific full integrity suite;
 - produce immutable portable release or explicitly declared operational checkpoint;
-- independently validate;
+- independently validate the selected release/checkpoint, reopening the archive when one exists;
 - hand off to next phase.
 
 ---
