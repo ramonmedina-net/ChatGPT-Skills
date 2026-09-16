@@ -1,0 +1,63 @@
+name: skill-integrity
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  skill-integrity:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # Run the repository validator trusted by the PR base commit.
+      # A candidate branch therefore cannot weaken its own validation
+      # merely by modifying scripts/validate_skill_repository.py.
+      - name: Validate against trusted base policy
+        if: github.event_name == 'pull_request'
+        shell: bash
+        run: |
+          git show "${{ github.event.pull_request.base.sha }}:scripts/validate_skill_repository.py" \
+            > /tmp/trusted_validate_skill_repository.py
+          python /tmp/trusted_validate_skill_repository.py --root .
+
+      # Then run the validator proposed by the candidate state.
+      - name: Validate proposed repository state
+        run: |
+          python scripts/validate_skill_repository.py --root .
+
+      - name: Build Phased Research Continuity package twice
+        shell: bash
+        run: |
+          python skills/phased_research_continuity_skill/build_package.py \
+            --output /tmp/prc-a.zip
+          python skills/phased_research_continuity_skill/build_package.py \
+            --output /tmp/prc-b.zip
+
+          A="$(sha256sum /tmp/prc-a.zip | awk '{print $1}')"
+          B="$(sha256sum /tmp/prc-b.zip | awk '{print $1}')"
+
+          echo "package_a_sha256=$A"
+          echo "package_b_sha256=$B"
+
+          test "$A" = "$B"
+
+      - name: Validate Phased Research Continuity package
+        run: |
+          python skills/phased_research_continuity_skill/validate_package.py \
+            /tmp/prc-a.zip
