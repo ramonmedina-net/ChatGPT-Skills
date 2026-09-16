@@ -30,6 +30,9 @@ Use this skill for research spanning multiple agents, models, sessions, usage wi
 24. A pushed commit is a durable external checkpoint; a local commit or chat update is not.
 25. Validate the trusted-base validator as well as the candidate validator when practical, and emit telemetry for executed, failed, skipped, and prerequisite-missing checks.
 26. Never store the SHA of a metadata-bearing commit inside that same metadata record; use `recorded_through_commit` and `metadata_commit_self_excluded`.
+27. The protected authoritative branch is accepted state. For an already-authorized active unit or open pull request, the latest validated and pushed execution-branch checkpoint is the authoritative resume point for proposed work; it does not supersede accepted state until promotion/merge.
+28. Select a checkpoint form per project: a Git-native operational checkpoint is a validated pushed commit plus sufficient evidence and does not require a ZIP at every micro-batch; an artifact-native checkpoint retains immutable archive validation; a portable release still requires explicit sealing and independent archive validation.
+29. Use the supported deterministic package builder for this skill: `python skills/phased_research_continuity_skill/build_package.py --output <package.zip>`, then run `validate_package.py` against the produced ZIP.
 
 ## Capability routing
 
@@ -52,7 +55,7 @@ Use project model-role mapping for current model names. Do not assume a particul
 
 When appropriate:
 
-`prepare -> plan -> acquire -> judge -> materialize -> package`
+`prepare -> plan -> acquire -> judge -> materialize -> checkpoint -> package_if_required`
 
 - preparation/acquisition/materialization/packaging: workhorse
 - search planning and evidentiary judgment: judgment
@@ -84,9 +87,15 @@ Prefer:
 
 Operational checkpoint dependencies must be declared by project-relative path, SHA-256, and byte length.
 
-Current accepted cumulative structured state lives directly in Git. Historical accepted states come from Git history and tags rather than recursive version directories. Immutable evidence should be content-addressed or hash-indexed; Git LFS may hold large/binary artifacts, but a pointer alone does not prove availability.
+For Git-native projects where policy, sensitivity, storage size, and technical constraints permit it, current accepted cumulative structured state lives directly in Git. Historical accepted states come from Git history and tags rather than recursive version directories. If authoritative structured data cannot appropriately live in Git, use an external authoritative store with Git-tracked schemas/manifests/indexes, immutable snapshot identity, hashes/version IDs, durable locators, and validated dependency records. Immutable evidence should be content-addressed or hash-indexed; Git LFS may hold large/binary artifacts, but a pointer alone does not prove availability.
 
 Record model UI label, backend identifier or `unavailable`, role, and configuration. Record custom-skill dependencies separately from runtime dependencies; use an empty custom-skill list when none was invoked.
+
+When resuming after interruption, reconcile the latest pushed execution-branch checkpoint for the active proposed unit before consulting older accepted state. Do not confuse proposed resume authority with accepted authority.
+
+## Deterministic package build
+
+The supported builder normalizes intended text members to LF, uses deterministic ordering and ZIP metadata, excludes runtime debris, and verifies all non-manifest members against `PACKAGE_MANIFEST.json`. The manifest remains excluded from its own hash list. A Git-native checkpoint does not require invoking the builder unless a package or sealing milestone is required.
 
 ## Block-on-ambiguity
 

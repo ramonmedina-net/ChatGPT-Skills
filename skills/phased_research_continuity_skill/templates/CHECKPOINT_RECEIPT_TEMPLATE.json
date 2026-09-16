@@ -4,6 +4,13 @@
   "phase": "",
   "unit_id": "",
   "checkpoint_type": "operational|portable|recovery|partial",
+  "checkpoint_mode": "git_native|artifact_native|portable_release|unset",
+  "resume_authority": {
+    "accepted_state_locator": "",
+    "active_execution_checkpoint": "",
+    "active_checkpoint_validated": null,
+    "proposed_state_not_accepted_until_merge": true
+  },
   "authoritative_branch": "main",
   "execution_branch": "",
   "commit_pushed": "",

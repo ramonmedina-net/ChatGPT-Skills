@@ -17,6 +17,18 @@
       "review_state": "pending|approved|changes_requested|merged"
     }
   },
+  "resume_authority": {
+    "accepted_state_locator": "",
+    "active_execution_checkpoint": "",
+    "active_checkpoint_validated": null,
+    "proposed_state_not_accepted_until_merge": true
+  },
+  "checkpointing": {
+    "mode": "git_native|artifact_native|portable_release|unset",
+    "package_required_for_this_unit": null,
+    "package_path": "",
+    "package_validation_status": ""
+  },
   "provenance": {
     "run_record_path": "",
     "prompt_path": "",

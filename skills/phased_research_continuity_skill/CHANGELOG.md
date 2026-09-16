@@ -10,9 +10,13 @@
 - Trusted-base plus candidate validation doctrine and explicit validator observability statuses.
 - Content-addressed evidence-object index, Git LFS availability metadata, self-reference-safe Git fields, and explicit model/skill/runtime provenance.
 - Run, prompt, correction, decision-packet, Git handoff, trusted-validation, and evidence-index templates.
+- Deterministic cross-platform `build_package.py` for canonical LF package bytes, stable ordering, fixed ZIP metadata, runtime-debris exclusion, and manifest reconciliation.
 
 ### Changed
-- The authoritative current structured state is stored directly in Git; historical accepted states are recovered through history and tags rather than recursive cumulative copies.
+- The protected authoritative branch remains accepted state, while the latest validated pushed checkpoint on an authorized active execution branch is the resume authority for proposed work until promotion.
+- Git-native operational checkpoints no longer require ZIP packaging at every bounded unit; artifact-native checkpoints and explicit portable sealing milestones retain independent archive validation.
+- Git storage of accepted structured state is recommended only where repository policy, sensitivity, storage size, and technical constraints permit it; otherwise an external authoritative store may be paired with Git-tracked identities and dependency records.
+- The authoritative current structured state for Git-native projects is stored directly in Git; historical accepted states are recovered through history and tags rather than recursive cumulative copies.
 - A lower-authority model may flag ambiguity but may not silently resolve it outside frozen rules.
 - The judgment tier consumes validated packets and does not repeat deterministic integrity work unless an attestation is suspect.
 - Infrastructure corrections are new commits with CI reruns and re-review; historical commits are not rewritten and research conclusions are not re-adjudicated without explicit authorization.

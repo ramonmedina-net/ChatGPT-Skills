@@ -18,6 +18,12 @@
   "web_research": false,
   "authoritative_branch": "main",
   "execution_branch": "",
+  "checkpoint_mode": "git_native|artifact_native|portable_release|unset",
+  "resume_authority": {
+    "accepted_state_locator": "",
+    "active_execution_checkpoint": "",
+    "proposed_state_not_accepted_until_merge": true
+  },
   "starting_git_commit": "",
   "recorded_through_commit": "",
   "metadata_commit_self_excluded": true,

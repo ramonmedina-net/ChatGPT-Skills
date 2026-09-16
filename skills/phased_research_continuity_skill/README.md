@@ -37,6 +37,8 @@ A progress message, hidden scratch file, or expensive model's assertion is not a
 
 The authoritative branch, normally `main`, contains accepted state only. Executors work on bounded branches, commit and push durable units, and open pull requests. The coordinator independently reviews the actual diff, commit history, CI, validation telemetry, and provenance. The human owner performs the final merge; the execution agent does not merge its own authoritative work.
 
+For an already-authorized active unit or open pull request, the latest validated and pushed execution-branch checkpoint is the authoritative resume point for proposed work. It does not supersede accepted `main` until promotion/merge. A fresh executor resumes from that checkpoint rather than restarting from older accepted state.
+
 Prompt provenance is preserved before substantive work. A correction prompt is a separate append-only event and produces a new commit; historical commits are not rewritten.
 
 ## Model selection
@@ -60,7 +62,24 @@ Operational checkpoints may reference canonical assets elsewhere in the durable 
 
 Portable releases remain self-contained (or explicitly paired with a canonical evidence bundle) and should flatten/deduplicate rather than recursively embed predecessor archives.
 
-Current accepted cumulative structured state lives directly in Git. Immutable evidence should be content-addressed or hash-indexed, and large/binary objects may use Git LFS when configured and available. Operational checkpoints identify ancestry and dependencies cryptographically without recursive archive copies.
+For Git-native projects where repository policy, data classification/sensitivity, storage size, and technical constraints permit it, current accepted cumulative structured state lives directly in Git. Immutable evidence should be content-addressed or hash-indexed, and large/binary objects may use Git LFS when configured and available. Operational checkpoints identify ancestry and dependencies cryptographically without recursive archive copies.
+
+Where authoritative structured data cannot appropriately live in Git, use an external authoritative structured store while keeping schemas, manifests, indexes, immutable snapshot identities, hashes/version IDs, durable locators, and validated dependency records in Git. This preserves the governance boundary without making direct Git storage mandatory for every research program.
+
+## Checkpoint choices
+
+- **Git-native operational checkpoint:** a validated pushed execution-branch commit plus sufficient run state, provenance, handoff, and validator evidence. It does not require a ZIP at every case, stage, or micro-batch.
+- **Artifact-native operational checkpoint:** the existing immutable checkpoint/archive workflow for non-Git projects or projects that explicitly require sealed artifacts.
+- **Portable release / sealing milestone:** explicit packaging and independent archive validation when portability, migration, release sealing, or project policy requires it.
+
+To build this skill package deterministically across Windows and Linux, run:
+
+```text
+python skills/phased_research_continuity_skill/build_package.py --output <package.zip>
+python skills/phased_research_continuity_skill/validate_package.py <package.zip>
+```
+
+The builder normalizes intended text members to LF, uses deterministic ordering and ZIP metadata, excludes runtime debris, and verifies all non-manifest members against `PACKAGE_MANIFEST.json`.
 
 ## Compatibility with v1.4.0
 

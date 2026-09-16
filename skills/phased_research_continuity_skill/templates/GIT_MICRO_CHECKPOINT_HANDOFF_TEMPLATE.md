@@ -10,6 +10,9 @@
 - Unit/stage:
 - Commit pushed:
 - Commit timestamp:
+- Resume authority for proposed work:
+- Accepted authoritative state remains at:
+- Proposed state remains unaccepted until promotion/merge: true
 - Recorded through commit:
 - Metadata commit self-excluded: true
 - Commit-list scope:
