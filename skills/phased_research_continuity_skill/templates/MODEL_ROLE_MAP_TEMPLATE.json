@@ -2,7 +2,10 @@
   "schema_version": "1.0",
   "workhorse": {
     "model": "",
+    "model_ui_label": "",
+    "backend_model_identifier": "unavailable",
     "reasoning_level": "",
+    "configuration": {},
     "authorized_capability_classes": [
       "J0",
       "J1",
@@ -11,7 +14,10 @@
   },
   "judgment": {
     "model": "",
+    "model_ui_label": "",
+    "backend_model_identifier": "unavailable",
     "reasoning_level": "",
+    "configuration": {},
     "authorized_capability_classes": [
       "J2_when_rules_are_not_closed",
       "J3",
@@ -20,7 +26,10 @@
   },
   "escalation_audit": {
     "model": "",
+    "model_ui_label": "",
+    "backend_model_identifier": "unavailable",
     "reasoning_level": "",
+    "configuration": {},
     "authorized_use": "optional second opinion, adversarial review, unusual failure"
   },
   "notes": "Model names are project configuration, not normative skill rules."

@@ -3,6 +3,14 @@
   "artifact_type": "operational_checkpoint_external_dependencies",
   "checkpoint_id": "",
   "project_root_locator": "",
+  "authoritative_structured_state_mode": "git|external_store|artifact_only",
+  "external_authoritative_store": {
+    "store_locator": "",
+    "snapshot_identity": "",
+    "snapshot_hash_or_version": "",
+    "schema_manifest_index_paths": [],
+    "validation_status": ""
+  },
   "dependencies": [
     {
       "dependency_id": "",
@@ -11,6 +19,9 @@
       "sha256": "",
       "bytes": 0,
       "required": true,
+      "identity_type": "sha256|git_object|lfs_object|other",
+      "lfs_pointer_sha256": "",
+      "availability_status": "available|unavailable|not_checked",
       "validation_status": "",
       "reason_not_embedded": ""
     }

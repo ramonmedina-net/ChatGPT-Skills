@@ -1,5 +1,14 @@
 # Micro-Batch Handoff
 
+## Git governance
+- Authoritative branch:
+- Execution branch:
+- Pushed checkpoint commit:
+- Recorded through commit:
+- Metadata commit self-excluded: true
+- Pull request:
+- Promotion status: PROPOSED — NOT ACCEPTED
+
 ## Immediate predecessor
 - Checkpoint:
 - SHA-256:
@@ -24,6 +33,16 @@
 - Checkpoint path:
 - Checkpoint SHA-256:
 - Receipt path:
+
+## Provenance
+- Invocation prompt path:
+- Prompt SHA-256:
+- Run record path:
+- Model UI label:
+- Backend model identifier:
+- Model role:
+- Custom-skill dependencies:
+- Runtime dependencies:
 
 ## Remaining work
 - Follow-up items:

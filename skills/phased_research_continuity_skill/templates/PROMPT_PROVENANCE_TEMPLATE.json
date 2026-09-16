@@ -1,0 +1,17 @@
+{
+  "schema_version": "1.0",
+  "record_type": "prompt_provenance",
+  "prompt_id": "",
+  "run_id": "",
+  "invocation_kind": "initial|correction|follow_up",
+  "prompt_path": "",
+  "prompt_sha256": "",
+  "prompt_bytes": 0,
+  "line_ending_policy": "preserve_submitted_bytes_where_practical",
+  "parent_prompt_id": null,
+  "correction_of_prompt_id": null,
+  "preserved_before_substantive_work": false,
+  "provenance_commit": "",
+  "append_only": true,
+  "notes": ""
+}

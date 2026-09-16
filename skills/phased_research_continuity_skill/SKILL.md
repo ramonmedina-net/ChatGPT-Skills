@@ -1,6 +1,6 @@
 # Skill: Phased Research Continuity
-Version: 1.4.0
-Release: Storage Architecture & Capability-Tiered Execution
+Version: 1.5.0
+Release: Git-Native Governance & Judgment-Efficient Execution
 
 ## Purpose
 
@@ -13,20 +13,35 @@ Use this skill for complex research programs that:
 
 The skill governs **continuity, persistence, provenance, validation, and recovery**. It does not replace a project's substantive research protocol.
 
+The agent is disposable. The durable state is not. The model is interchangeable. Authority resides in validated artifacts, governed Git history, explicit decision boundaries, and human-approved promotion.
+
+The operational routing principle is:
+
+> The workhorse proves the inputs are intact. The judgment tier decides what the intact inputs mean. The workhorse applies the decisions.
+
 ---
 
 ## 1. Authority hierarchy
 
 Use this hierarchy unless the project explicitly defines a stricter one:
 
-1. latest independently validated immutable release/checkpoint;
-2. durable incremental working files descended from that artifact;
-3. retained raw evidence/captures and contemporaneous logs;
-4. machine-derived summaries reproduced from those files;
-5. progress reports/messages;
-6. conversational memory.
+1. latest accepted state on the protected authoritative branch, normally represented by a reviewed pull-request merge;
+2. latest independently validated immutable release/checkpoint;
+3. durable incremental working files descended from that artifact;
+4. retained raw evidence/captures and contemporaneous logs;
+5. machine-derived summaries reproduced from those files;
+6. progress reports/messages;
+7. conversational memory.
 
 Lower layers may explain higher layers but may not overwrite them without source-backed controlled change.
+
+A valid commit on an execution branch is proposed state, not accepted state, until it crosses the pull-request promotion boundary and is merged according to repository governance.
+
+### Active execution-branch resume authority
+
+The protected authoritative branch remains the accepted research state. Within an already-authorized active execution unit or open pull request, however, the latest validated and pushed execution-branch checkpoint is the authoritative resume point for that proposed work. It does not supersede accepted state until promotion/merge.
+
+After interruption, a fresh executor resumes the active unit from that latest durable pushed checkpoint after a lightweight identity/state check. It must not restart from older `main` merely because `main` is the accepted branch. If the execution-branch checkpoint is unavailable, unvalidated, or suspect, preserve the intact accepted state and escalate the fallback decision to the coordinator.
 
 **Conversation memory is never a substitute for missing evidence.**
 
@@ -54,7 +69,7 @@ B03 inherits cumulative state from B02, while the original baseline remains pres
 
 ## 3. Validation levels
 
-### 3.1 Full validation — artifact creation/sealing
+### 3.1 Full validation — checkpoint creation/sealing
 
 Perform full independent validation when:
 - creating a new immutable checkpoint;
@@ -64,7 +79,7 @@ Perform full independent validation when:
 - the predecessor has not previously been validated.
 
 As applicable, check:
-- ZIP/archive CRC;
+- ZIP/archive CRC for artifact-native checkpoints and portable releases;
 - safe and unique paths;
 - manifest completeness;
 - SHA-256 and byte counts;
@@ -78,7 +93,7 @@ As applicable, check:
 - machine-summary reproduction;
 - project-specific completion requirements.
 
-Independently reopen the packaged artifact. Do not validate only the source directory that was packaged.
+When the selected checkpoint or release is packaged, independently reopen the packaged artifact. Do not validate only the source directory that was packaged. For a Git-native operational checkpoint, validate the pushed commit and its associated state, provenance, handoff, and validator evidence instead of inventing an archive.
 
 ### 3.2 Lightweight startup validation — consumption of a known checkpoint
 
@@ -164,25 +179,42 @@ Each unit should define before substantive work:
 A unit should be small enough that:
 - state can be persisted frequently;
 - a failure has bounded cost;
-- validation/packaging is feasible within the usage window.
+- validation, and packaging if required by the selected checkpoint mode, is feasible within the usage window.
 
 Do not optimize batch size upward after only one successful run. Use observed workload and failure history.
 
 ### Unit lifecycle
 
-1. lightweight predecessor identity check;
+1. lightweight predecessor identity or active-branch resume check;
 2. initialize durable working directory;
 3. record execution status;
 4. review inherited evidence first;
 5. conduct only authorized substantive work;
 6. persist incrementally;
 7. derive summaries programmatically;
-8. package immutable cumulative checkpoint;
-9. independently validate checkpoint;
+8. select the checkpoint form required by the project;
+9. create and validate that checkpoint form;
 10. update coordinator state / receipt;
-11. stop and await authorization for next unit.
+11. commit and push a Git-native checkpoint, or durably store the artifact-native checkpoint;
+12. stop and await authorization for next unit.
 
 Unused search capacity does not automatically carry forward unless the protocol explicitly says it does.
+
+### 5.1 Checkpoint forms
+
+Choose one checkpoint form for the unit rather than requiring every form at once:
+
+#### Git-native operational checkpoint
+
+A validated pushed commit on the authorized execution branch, accompanied by sufficient run state, prompt/model provenance, handoff, and validator evidence, may serve as the durable operational checkpoint for continued work. It does not require a ZIP/archive at every case, stage, or micro-batch. The pushed commit is the resume authority for the proposed active unit, subject to the active execution-branch resume rule above.
+
+#### Artifact-native operational checkpoint
+
+For non-Git workflows, or projects that explicitly require sealed artifacts, retain the immutable checkpoint/archive workflow. Independently reopen and validate the archive before treating it as the operational predecessor.
+
+#### Portable release or explicit sealing milestone
+
+When portability, release sealing, migration, or project policy requires a self-contained artifact, package it and run independent archive validation. A Git-native micro-checkpoint does not by itself replace an explicitly required portable release.
 
 ---
 
@@ -208,6 +240,16 @@ Responsible for:
 - logging and preserving evidence;
 - producing the validated successor checkpoint;
 - stopping after the assigned unit.
+
+For Git-native projects, the execution agent works on a bounded execution branch, commits durable progress, pushes those commits, and may open a pull request. It must not write directly to the protected authoritative branch, force-push, delete governed branches, or merge its own authoritative work.
+
+The coordinator should inspect what actually landed in Git: the branch, commits, diff, CI results, validation logs, and provenance artifacts. A final narrative is not a substitute for independent inspection.
+
+The preferred promotion path is:
+
+`executor branch -> pull request -> coordinator review -> human final merge`
+
+The coordinator may approve or request changes but should not normally perform the final merge. Any exception must be an explicit project governance override.
 
 A coordinator conversation may be replaced. A Work/execution thread may be replaced. Neither replacement should threaten the research if the durable artifact chain is complete.
 
@@ -280,13 +322,15 @@ Compare:
 - planned vs executed search states;
 - completed vs partial items.
 
+If the unit is already authorized on an execution branch or represented by an open pull request, first identify the latest validated and pushed branch checkpoint and use it as the proposed-work resume authority. The protected authoritative branch remains the accepted state; do not restart from older `main` unless the active checkpoint is unavailable or suspect and the coordinator authorizes the fallback.
+
 Then continue **only unfinished work**.
 
 If search acquisition is complete:
-> resume with adjudication, summary, integrity, and packaging—not research repetition.
+> resume with adjudication, summary, integrity, and the selected checkpoint form—not research repetition. Package an archive only when the project uses an artifact-native checkpoint or requires a sealing milestone.
 
 If substantive work is complete:
-> resume with packaging/validation only.
+> resume with the selected checkpoint form and validation only. A Git-native operational checkpoint may be a validated pushed commit with its evidence; a ZIP is not automatic.
 
 ---
 
@@ -299,11 +343,13 @@ If usage, context length, tool availability, or workspace stability appears like
 3. record completed and partial items;
 4. record remaining budget;
 5. record last IDs;
-6. package a partial checkpoint if feasible;
-7. independently validate what was packaged;
+6. select the checkpoint mode and create the appropriate partial checkpoint if feasible;
+7. independently validate the selected checkpoint; when it is an artifact/archive, reopen and validate what was packaged;
 8. stop.
 
-Do not spend the final available execution time squeezing in extra research while leaving completed evidence unsealed.
+For Git-native mode, the partial checkpoint is a validated commit pushed to the execution branch with its state/provenance/handoff evidence. For artifact-native mode, package the partial checkpoint and independently validate the archive.
+
+Do not spend the final available execution time squeezing in extra research while leaving completed evidence unpersisted or an artifact checkpoint unsealed.
 
 A partial checkpoint must never masquerade as a completed release.
 
@@ -349,11 +395,12 @@ Use a separate historical-loss ledger with a status such as:
 Do not insert those reports into authoritative search logs.
 
 ### 11.5 Recovery checkpoint
-Package the intact predecessor plus:
+Create a recovery checkpoint in the selected mode. For artifact-native mode, package the intact predecessor plus:
 - loss inventory;
 - handoff;
 - relevant assignment/protocol;
-- validation metadata.
+- validation metadata;
+and independently validate the archive. For Git-native mode, commit and push the loss inventory, handoff, relevant assignment/protocol, validation metadata, and a reference to the intact predecessor.
 
 Label it clearly as incomplete. Never call it a completed successor release.
 
@@ -545,9 +592,17 @@ See `templates/EXECUTION_STATUS_TEMPLATE.json`.
 ## 17. Operational checkpoint vs portable release
 
 ### Operational checkpoint
-A durable continuation artifact optimized for resuming work inside a known persistent project environment.
+A durable continuation checkpoint optimized for resuming work inside a known persistent project environment. The operational form is mode-aware:
 
-It may represent:
+#### Git-native operational checkpoint
+
+A validated commit pushed to the authorized execution branch, accompanied by sufficient run state, prompt/model provenance, handoff, and validator evidence, may serve as the durable operational checkpoint. Its durable identity is the execution branch plus pushed commit identity; it does not require a checkpoint filename, archive, or ZIP manifest at every case, stage, or micro-batch.
+
+#### Artifact-native operational checkpoint
+
+For non-Git workflows, or projects that explicitly require sealed artifacts, retain the immutable checkpoint/archive workflow. The operational checkpoint is identified by its filename/path, SHA-256, byte length, and validation state. Independently reopen and validate the archive before treating it as the operational predecessor.
+
+Either operational form may represent:
 - a completed micro-batch;
 - a partial interrupted batch;
 - infrastructure reconstruction;
@@ -562,7 +617,7 @@ An operational checkpoint may depend on canonical immutable assets stored elsewh
 - required/optional status;
 - validation state.
 
-Its manifest must say that it is an operational checkpoint and **not** a portable release.
+An artifact-native checkpoint manifest must say that it is an operational checkpoint and **not** a portable release. A Git-native checkpoint records the equivalent mode and evidence in its run state/handoff rather than inventing an archive manifest.
 
 ### Portable release
 A phase-level or milestone-level artifact intended to remain usable after separation from the original project filesystem.
@@ -579,16 +634,13 @@ Never call an infrastructure checkpoint, recovery checkpoint, partial batch, or 
 
 ## 18. Checkpoint receipt and coordinator state
 
-After a checkpoint passes validation, write a small durable receipt containing:
-- checkpoint filename/path;
-- SHA-256;
-- validation status;
-- phase/unit;
-- completion timestamp;
-- high-level counts;
-- next authorization state.
+After a checkpoint passes validation, write a small durable receipt whose fields match the checkpoint mode:
+- all modes: checkpoint type/mode, phase/unit, completion timestamp, high-level counts, and next authorization state;
+- Git-native: execution branch, pushed commit identity, and validation/handoff/provenance evidence;
+- artifact-native: filename/path, SHA-256, byte length, and validation status;
+- portable release: sealed artifact identity and independent package-validation result, including SHA-256 and byte length where available.
 
-A coordinator-state document should point to the **latest validated checkpoint**, not merely the latest working directory.
+A coordinator-state document should point to the **latest validated checkpoint**, using commit identity for Git-native mode and artifact identity for artifact-native or portable mode, not merely the latest working directory.
 
 Do not authorize the next unit automatically unless the research plan explicitly permits it.
 
@@ -600,7 +652,7 @@ When a conversation reaches maximum length or must be replaced:
 
 - flush all durable state;
 - create a checkpoint where practical;
-- start fresh from the latest validated artifact;
+- start fresh from the latest validated checkpoint;
 - do not require the old transcript.
 
 **File continuity is mandatory. Conversation continuity is optional.**
@@ -609,7 +661,7 @@ When a conversation reaches maximum length or must be replaced:
 
 ## 20. Packaging, storage growth, and validation requirements
 
-For every immutable checkpoint/release:
+For every artifact-native immutable checkpoint or portable release:
 
 - use a distinct versioned name;
 - do not overwrite predecessor artifacts;
@@ -636,7 +688,7 @@ Exclude from sealed artifacts unless explicitly required:
 
 ### 20.2 Storage-growth audit before sealing
 
-Before accepting a checkpoint/release, calculate where practical:
+Before accepting an artifact-native checkpoint or portable release, calculate where practical:
 - proposed archive file count;
 - compressed/uncompressed size;
 - bytes by major category;
@@ -654,7 +706,7 @@ Stop and investigate unexplained superlinear growth, large duplicate groups, or 
 ### 20.3 Operational checkpoint dependency validation
 
 An operational checkpoint validator should report separately:
-1. **internal archive integrity**; and
+1. **internal archive integrity**, when the selected checkpoint includes an archive;
 2. **external dependency integrity**.
 
 If a declared dependency is unavailable, report a dependency condition such as:
@@ -666,6 +718,17 @@ Do not mislabel missing external assets as internal archive corruption.
 ### 20.4 Portable-release validation
 
 A portable release must not rely silently on undeclared external files. Validate the self-contained package (or explicitly paired evidence bundle) after packaging.
+
+Git-native operational checkpoints use the pushed commit plus sufficient run state, provenance, handoff, and validator evidence; they do not require archive packaging at every bounded unit. Artifact-native operational checkpoints retain the immutable archive workflow. Portability, release sealing, migration, or explicit project policy still requires packaging and independent archive validation.
+
+For this skill package, the supported cross-platform build is:
+
+```text
+python skills/phased_research_continuity_skill/build_package.py --output <package.zip>
+python skills/phased_research_continuity_skill/validate_package.py <package.zip>
+```
+
+The builder canonicalizes intended text members to LF, orders members deterministically, uses fixed ZIP metadata, excludes runtime debris, excludes `PACKAGE_MANIFEST.json` from its own hash list, and verifies the resulting package against the manifest.
 
 ---
 
@@ -763,10 +826,14 @@ See `templates/MODEL_ROLE_MAP_TEMPLATE.json`.
 
 ### 25.2 Judgment budget is a protected resource
 
+Do not spend judgment-model budget on deterministic integrity verification. All J0/J1 continuity work belongs to the workhorse tier unless an explicit audit exception is recorded.
+
 Do not spend judgment-model capacity on:
 - hashes;
 - CRC;
 - row counts;
+- byte lengths;
+- schemas;
 - manifest validation;
 - archive traversal;
 - deterministic packaging;
@@ -774,15 +841,33 @@ Do not spend judgment-model capacity on:
 - deterministic source-ID allocation;
 - mechanical queue/status updates.
 
+This also includes Git state, branch identity, capture accounting, ID accounting, reference integrity, ZIP validation, LFS checks, CI readiness, and construction of a compact decision packet.
+
 A workhorse should validate and prepare these inputs first.
 
-The judgment role should consume a compact, validated decision packet.
+The judgment role should consume a compact, validated decision packet and should not traverse the full filesystem or rerun attested mechanical checks merely to rediscover the workspace.
+
+The authority boundary is normative:
+
+> A lower-cost or lower-authority model may detect ambiguity, but it must not silently resolve ambiguity outside explicit frozen rules.
+
+When an unplanned ambiguity is encountered, flag it, preserve the evidence, continue only unaffected work, and escalate it to the authorized judgment tier.
 
 ---
 
 ## 26. Frozen inter-model handoffs
 
 Every model-role transition should be mediated by durable artifacts, not only prose in chat.
+
+Before substantive execution at every stage:
+
+1. preserve the exact invocation prompt;
+2. hash it;
+3. create or append a machine-readable run record with model, skill-dependency, runtime, branch, and scope provenance;
+4. commit and push that provenance;
+5. only then begin substantive work.
+
+Prompt provenance is append-only. A correction prompt is a separate prompt and correction event; it never overwrites the original prompt or rewrites historical commits.
 
 Recommended pattern:
 
@@ -818,7 +903,7 @@ Continue independent mechanically safe work where allowed, but do not guess.
 
 For structured verification projects, prefer a split analogous to:
 
-`prepare -> plan -> acquire -> judge -> materialize -> package`
+`prepare -> plan -> acquire -> judge -> materialize -> checkpoint -> package_if_required`
 
 The names/stage letters are project-specific; the authority boundary is the important part.
 
@@ -838,7 +923,7 @@ It should not, by default:
 - allocate hundreds of authoritative IDs;
 - generate large provenance tables;
 - apply queue/status bookkeeping;
-- package the checkpoint.
+- create the selected checkpoint; package it only when artifact-native or portable-release mode requires packaging.
 
 ### 27.2 Decision ledger contract
 
@@ -923,7 +1008,9 @@ The attestation may cover:
 - absence of unauthorized modifications;
 - exact current stage.
 
-The judgment role should normally **trust a PASS attestation** rather than recomputing the same hashes/counts.
+For substantive judgment, prefer a machine-readable `JUDGMENT_READINESS_ATTESTATION.json` that also records expected case/item scope, frozen search/acquisition state, evidence availability, target count, protected authoritative-state hashes, packet completeness, unresolved ambiguity flags, allowed judgment scope, and any clarification reserve.
+
+The judgment role should verify the identity of the attestation and decision packet, then normally **trust a PASS attestation** rather than recomputing the same hashes/counts.
 
 Escalate only if:
 - the attestation reports a discrepancy;
@@ -986,6 +1073,16 @@ Use distinct storage roles where practical:
 
 Recommended external-dependency metadata is in `templates/EXTERNAL_DEPENDENCIES_TEMPLATE.json`.
 
+For Git-native projects where repository policy, data classification/sensitivity, storage size, and technical constraints permit it, the current accepted cumulative structured state belongs directly in Git. Do not create recursive `v01/v02/v03/...` copies of the same cumulative tables. Historical accepted states are recovered through Git history and tags.
+
+If authoritative structured data cannot appropriately live in Git, use an external authoritative structured store while keeping Git-tracked schemas, manifests, and indexes. Record immutable snapshot identity, hashes or version IDs, explicit durable locators, and validated dependency records. This is a storage-mode choice, not permission to weaken the Git-native branch, provenance, checkpoint, or review boundaries.
+
+For immutable evidence, prefer a content-addressed store such as:
+
+`evidence/objects/sha256/<prefix>/<sha256>.<ext>`
+
+Maintain an evidence index mapping each logical identity to its SHA-256, byte length, case/item, search or acquisition ID, source ID, legacy path when applicable, current Git path, and required/optional status. Use Git LFS for large or binary artifacts when configured and appropriate; an LFS pointer alone does not prove that the intended object is available.
+
 ### 30.1 Cryptographic ancestry, not recursive bytes
 
 A successor operational checkpoint should usually retain:
@@ -1039,8 +1136,8 @@ See `templates/OPERATIONS_TELEMETRY_TEMPLATE.json`.
 ## 32. Minimal operational checklist
 
 Before work:
-- identify predecessor + SHA;
-- lightweight identity/state check;
+- identify the accepted predecessor + SHA and, for an active Git unit, the latest validated pushed execution-branch checkpoint;
+- perform the lightweight identity/state check against the correct resume authority;
 - confirm durable storage;
 - fix scope/budget/IDs;
 - initialize execution status;
@@ -1079,9 +1176,9 @@ Before limits:
 
 At unit completion:
 - derive summaries;
-- run storage-growth/duplication audit;
-- package non-recursively where appropriate;
-- independently validate internal integrity;
+- select Git-native or artifact-native operational checkpoint mode;
+- for Git-native mode, commit/push run state, provenance, handoff, and validator evidence;
+- for artifact-native mode, run storage-growth/duplication audit, package non-recursively, and independently validate internal integrity;
 - validate declared external dependencies;
 - write receipt/coordinator state;
 - stop.
@@ -1089,5 +1186,93 @@ At unit completion:
 At phase completion:
 - run project-specific full integrity suite;
 - produce immutable portable release or explicitly declared operational checkpoint;
-- independently validate;
+- independently validate the selected release/checkpoint, reopening the archive when one exists;
 - hand off to next phase.
+
+---
+
+## 33. Git-native authority and promotion
+
+Git is part of the research governance boundary, not merely a transport mechanism.
+
+### 33.1 Authoritative branch
+
+The authoritative branch is usually `main`. It should be protected and contain accepted state only. Execution agents must not write to it directly, force-push it, delete it, or bypass its required review and CI controls.
+
+The current authoritative branch head is obtained from Git/GitHub. It should not be copied into self-referential metadata that is changed by the same commit.
+
+### 33.2 Execution branches
+
+Workhorse and judgment agents may create bounded execution branches such as `phase2/unit-A`, `migration/post-baseline`, or `skill/<change>`. They may commit and push those branches within their authorization. A branch name is not evidence that the branch is accepted.
+
+### 33.3 Pull-request promotion boundary
+
+A pull request must expose every proposed authoritative change, preserve commit history, carry CI and validator results, and remain unmerged until explicit approval. The coordinator reviews the actual diff and logs. The human owner performs the final merge under the repository's protected-branch rules.
+
+### 33.4 Trusted-base plus candidate validation
+
+A proposed branch must not be able to weaken its own validator and thereby evade the governance policy that governed its starting state. When practical, CI runs:
+
+1. the validator trusted by the pull-request base commit; and
+2. the validator proposed by the candidate branch.
+
+This is monotonic validation: a pull request may strengthen future validation, but it cannot evade the base policy merely by editing the candidate validator. Workflow files and validation trust roots should be protected more strongly than ordinary research files where practical.
+
+### 33.5 Validator observability
+
+A validator must not merely exit successfully. Important sections must emit explicit telemetry so silently skipped checks are detectable. Use statuses such as:
+
+- `status_distribution=PASS`;
+- `referential_integrity=PASS`;
+- `provenance_references=PASS`;
+- `historical_loss_firewall=PASS`.
+
+Validation frameworks must distinguish a check that executed and passed, executed and failed, was skipped, or lacked a prerequisite. A silent no-op check is a defect.
+
+### 33.6 Self-reference-safe Git metadata
+
+Do not store the SHA of the commit containing a metadata record inside that same record. Use fields such as `recorded_through_commit`, `metadata_commit_self_excluded: true`, and `commit_list_scope`. Obtain the current branch or PR head from Git/GitHub. Do not create infinite metadata-update loops.
+
+### 33.7 Model, skill, and runtime provenance
+
+Every substantive run records the model at the level actually known:
+
+- `model_ui_label`;
+- `backend_model_identifier` (use `unavailable` when not exposed);
+- `model_role`;
+- `configuration`.
+
+It also records custom-skill dependencies separately from runtime capabilities. If a custom skill was invoked, record its repository, commit, path, version, and identity hash as available. If none was invoked, record an empty list. Never infer use merely because a skill exists nearby. OpenAI or backend-provided runtime skills are external runtime dependencies, not user-controlled skill artifacts.
+
+Runtime provenance may separately identify the execution environment, Git, Git LFS, GitHub CLI or connector, and explicitly authorized public web access. Do not invent unavailable backend identifiers.
+
+### 33.8 Dedicated execution identities
+
+Where practical, use a separate machine or bot identity with minimum repository permissions. Routine execution should have no repository-administration, force-push, direct protected-branch, or workflow-edit authority unless explicitly required. Human ownership remains the final governance control. Do not hard-code a project-specific account into this generic skill.
+
+## 34. Git micro-checkpoints and correction workflow
+
+Substantive work should be committed and pushed in bounded units. Examples include infrastructure preparation, search-plan freeze, an evidence-acquisition batch, one adjudicated case/item, deterministic materialization, and validation/reporting. A pushed commit is a durable external checkpoint; a local unpushed commit or chat progress message is not.
+
+Within an already-authorized active unit or open pull request, the latest validated pushed execution-branch checkpoint is the authoritative resume point for proposed work. It does not supersede the accepted authoritative branch until promotion/merge. No ZIP is required for each Git-native micro-checkpoint unless artifact sealing is separately required.
+
+For multi-case or multi-item judgment, prefer:
+
+`readiness gate -> judgment item -> commit/push -> next item -> materialization`
+
+Completed judgments must not remain only in model context. The workhorse may materialize frozen decisions, but it must stop and escalate if application requires substantive interpretation.
+
+If a coordinator review finds a defect:
+
+1. coordinator submits `REQUEST CHANGES`;
+2. executor receives an explicit correction prompt;
+3. correction prompt and event are preserved separately;
+4. historical commits are not rewritten;
+5. the fix is a new commit;
+6. CI reruns;
+7. coordinator re-reviews and may replace the blocking state with approval;
+8. the human owner performs the final merge.
+
+An infrastructure-only correction does not re-adjudicate research conclusions unless that scope is explicitly authorized.
+
+See the run, prompt, correction, handoff, and trusted-validation templates for machine-readable forms.

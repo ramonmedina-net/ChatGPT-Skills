@@ -1,6 +1,8 @@
 {
   "schema_version": "1.0",
   "unit_id": "",
+  "recorded_through_commit": "",
+  "metadata_commit_self_excluded": true,
   "artifact_or_capture_id": "",
   "original_integrity_record": "",
   "observed_mismatch": {

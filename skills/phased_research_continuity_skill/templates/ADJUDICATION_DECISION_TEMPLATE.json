@@ -1,5 +1,7 @@
 {
+  "schema_version": "1.1",
   "decision_id": "",
+  "decision_packet_id": "",
   "target_id": "",
   "entity_type": "",
   "entity_id": "",
@@ -12,8 +14,18 @@
   "supporting_staging_source_ids": [],
   "supporting_staging_claim_ids": [],
   "contradicting_staging_source_ids": [],
+  "reading_index_refs": [],
   "attribution_requirement": "",
   "limitation": "",
   "reason": "",
+  "clarification_search_ids": [],
+  "judgment_model_provenance": {
+    "model_ui_label": "",
+    "backend_model_identifier": "unavailable",
+    "model_role": "judgment",
+    "configuration": {}
+  },
+  "recorded_through_commit": "",
+  "metadata_commit_self_excluded": true,
   "materialization_required": true
 }
