@@ -1157,7 +1157,7 @@ The current authoritative branch head is obtained from Git/GitHub. It should not
 
 ### 33.2 Execution branches
 
-Workhorse and judgment agents may create bounded execution branches such as `phase2/B05`, `migration/post-B04-baseline`, or `skill/<change>`. They may commit and push those branches within their authorization. A branch name is not evidence that the branch is accepted.
+Workhorse and judgment agents may create bounded execution branches such as `phase2/unit-A`, `migration/post-baseline`, or `skill/<change>`. They may commit and push those branches within their authorization. A branch name is not evidence that the branch is accepted.
 
 ### 33.3 Pull-request promotion boundary
 
