@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.1",
+  "record_type": "correction_run_completion_event",
+  "event_id": "CORRECTION-1.5.0-002",
+  "parent_run_id": "BUILD-1.5.0-001",
+  "prior_correction_event_id": "CORRECTION-1.5.0-001",
+  "skill_name": "Phased Research Continuity",
+  "source_version": "1.5.0",
+  "target_version": "1.5.0",
+  "pr_number": 1,
+  "pr_url": "https://github.com/ramonmedina-net/ChatGPT-Skills/pull/1",
+  "branch": "skill/phased-research-continuity-v1.5.0",
+  "review_state": "REQUEST_CHANGES",
+  "correction_prompt_path": "prompts/phased-research-continuity/v1.5.0/003_COORDINATOR_FINAL_CLEANUP.md",
+  "correction_prompt_sha256": "308bc229696653307ddb38c4da893c15ddf7090e9682ea84986a19eecbd7a112",
+  "correction_prompt_bytes": 3332,
+  "prior_blocking_commit": "43911c0f02289b9bf33f00a14bba601d0d9f8461",
+  "new_correction_commit": "8f00cfbc7c782d43966af934172fde9c9435c080",
+  "correction_commits": [
+    "86ce40e411bb50f875f3cd2092ccdfd9aafb31e5",
+    "43911c0f02289b9bf33f00a14bba601d0d9f8461",
+    "ff2c8d5855e33b622a8e8a3cc7bc1a3900fe6481",
+    "8f00cfbc7c782d43966af934172fde9c9435c080"
+  ],
+  "prompt_provenance_commit": "ff2c8d5855e33b622a8e8a3cc7bc1a3900fe6481",
+  "historical_commits_rewritten": false,
+  "ci_rerun_required": true,
+  "ci_rerun_result": "NOT_CONFIGURED",
+  "github_ci_checks": {
+    "status": "NOT_CONFIGURED",
+    "status_check_rollup": [],
+    "observation": "GitHub reported no checks on the feature branch at recording time."
+  },
+  "coordinator_re_review_result": "CHANGES_REQUESTED_PENDING_FINAL_CLEANUP",
+  "substantive_scope_changed": false,
+  "research_re_adjudication": false,
+  "research_re_adjudication_authorized": false,
+  "deterministic_package_build": {
+    "status": "PASS",
+    "version": "1.5.0",
+    "members": 32,
+    "two_build_sha256_match": true,
+    "sha256": "1c4b1782287d69dfbfe6df4f23b15b52ecf9cbcc096f79c6f7d167dd22ed7052",
+    "prior_correction_two_build_sha256": "285110221d307e6b60359a6d5c291147f84c7ba0109abee8b1ff5989addb79c9"
+  },
+  "package_validation": {
+    "status": "PASS",
+    "validator": "skills/phased_research_continuity_skill/validate_package.py",
+    "archive_sha256": "1c4b1782287d69dfbfe6df4f23b15b52ecf9cbcc096f79c6f7d167dd22ed7052",
+    "validation_checks": {
+      "archive_integrity": "PASS",
+      "path_safety": "PASS",
+      "manifest_reconciliation": "PASS",
+      "provenance_references": "PASS",
+      "required_content": "PASS",
+      "status_distribution": "PASS",
+      "referential_integrity": "SKIPPED",
+      "historical_loss_firewall": "SKIPPED"
+    }
+  },
+  "recorded_through_commit": "8f00cfbc7c782d43966af934172fde9c9435c080",
+  "metadata_commit_self_excluded": true,
+  "commit_list_scope": "Correction and follow-up cleanup commits through 8f00cfb; this completion-event metadata commit is self-excluded and its SHA is intentionally not recorded here.",
+  "correction_completed": true,
+  "model_ui_label": "Luna Max",
+  "backend_model_identifier": "unavailable",
+  "model_role": "workhorse",
+  "custom_skill_dependencies": [],
+  "runtime_capabilities_used": [
+    "filesystem",
+    "Git",
+    "Git LFS",
+    "GitHub CLI",
+    "bundled Python runtime",
+    "skill-creator system instructions"
+  ],
+  "web_research": false,
+  "timestamp": "2026-09-16T00:46:15.6944575Z",
+  "status": "completed",
+  "notes": "Coordinator-requested final cleanup completed without research re-adjudication. The prior correction package hash is retained for continuity; the final cleanup changed packaged SKILL/template bytes and produced the new deterministic hash recorded above. PR #1 remains open and unmerged pending final coordinator re-review."
+}
