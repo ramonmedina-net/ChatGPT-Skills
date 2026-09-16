@@ -2,24 +2,29 @@
   "created_date": "2026-09-15",
   "files": [
     {
-      "bytes": 5368,
+      "bytes": 4259,
+      "path": "build_package.py",
+      "sha256": "a77d0f9a250873702b5b5deeacdbbfca7bb81b9580eee10fcc8b5891f3586396"
+    },
+    {
+      "bytes": 6232,
       "path": "CHANGELOG.md",
-      "sha256": "4220ef98c93f2b5a2b6d8e2d4aef9a662db20d2ec1eb31f072530d072f7e66a9"
+      "sha256": "1936dff9b41d4de64a9a3531df2fad35e0226872e849bad791c7a2b0a9bd28ef"
     },
     {
-      "bytes": 6180,
+      "bytes": 8028,
       "path": "LLM_INSTRUCTIONS.md",
-      "sha256": "668189b1e1aeda28a4d6d4fdb829d627550b9bd2f82561ef3e49010d926f9459"
+      "sha256": "5773bab03977b4a0ade981a102f0a57c5d1562b45e2038330666f5c43c2d6be1"
     },
     {
-      "bytes": 4379,
+      "bytes": 6270,
       "path": "README.md",
-      "sha256": "17d40f744e01086c26dd522d65c3f0db0de69ea9f43193db9cdf4e6ec83ec5fe"
+      "sha256": "39c4fcdc3fda725bb0ac030ee1614045b207e1b7402ae9c5e69796c78c53d8e3"
     },
     {
-      "bytes": 42276,
+      "bytes": 47158,
       "path": "SKILL.md",
-      "sha256": "f7a66d6a090c0338ac680028434ca718623ef4d1296dec4cc38e88a1adbbe730"
+      "sha256": "336ebe957ae7b0382c85799ae0ed69abd0c9d93d482c199bb9960324345afb39"
     },
     {
       "bytes": 869,
@@ -27,19 +32,19 @@
       "sha256": "fa8e7425fc91aa8dbe9ea2fccdbf942f6c6605a2db7f778732bd082f33453207"
     },
     {
-      "bytes": 692,
+      "bytes": 961,
       "path": "templates/CHECKPOINT_RECEIPT_TEMPLATE.json",
-      "sha256": "6a09eecbd7c6be5181c8048c93b312d50b11f46d42d84232b7c59ad318913936"
+      "sha256": "65102a94fe4e1759237b15242dc9995dfd5bafd85bcbb9b5aa16ff702c79ba23"
     },
     {
-      "bytes": 825,
+      "bytes": 1112,
       "path": "templates/COORDINATOR_STATE_TEMPLATE.md",
-      "sha256": "c7d138c5922546e500c21a020db6a9a088433b0bc34cb95946bb6d7108fe89f9"
+      "sha256": "bfa9b23c66f81a9bb42b573cc9009bdf437df4f2953af3b5e380019ed73a8fa4"
     },
     {
-      "bytes": 613,
+      "bytes": 696,
       "path": "templates/CORRECTION_RUN_EVENT_TEMPLATE.json",
-      "sha256": "13e8f3d35abf5da4a46df66c44762ef85557950ae00cf056a051a11409ee4a7f"
+      "sha256": "2f3a3ddf04ec6ddd2218454412a49f099f9363638331ffbf65867c8f265a542e"
     },
     {
       "bytes": 837,
@@ -52,19 +57,19 @@
       "sha256": "94152b585285463cddf951c6c3e71d1530548e99369ba61b755c3692d0d2f432"
     },
     {
-      "bytes": 2008,
+      "bytes": 2398,
       "path": "templates/EXECUTION_STATUS_TEMPLATE.json",
-      "sha256": "ec7491c8799c55e3d120b033bfa616aae25faa41af980a851dfdb19379a9a7cc"
+      "sha256": "f7f2b1446acdec6f2b3a093a3c5e26c6fdca9f5b50dc1053d521585178a7329c"
     },
     {
-      "bytes": 551,
+      "bytes": 826,
       "path": "templates/EXTERNAL_DEPENDENCIES_TEMPLATE.json",
-      "sha256": "b8b7d68a2ec20476d1c2334f2a4e64d9603b82d941e75439479a6152b067320b"
+      "sha256": "6f414f5b6b5a99c17eaba350819ee1a89f618f8a7030784524ed1a1832b437d3"
     },
     {
-      "bytes": 907,
+      "bytes": 1052,
       "path": "templates/GIT_MICRO_CHECKPOINT_HANDOFF_TEMPLATE.md",
-      "sha256": "c0ea650e803e37663ccc1aadbeb547c4be408b0289c1b2f3dbfa48aa21bf9fd7"
+      "sha256": "4347f8c02bb0f5543ea3394e817e186b4c458f51687f8f0daf76282930be339a"
     },
     {
       "bytes": 288,
@@ -127,9 +132,9 @@
       "sha256": "dddfe1c23cb2a836f9eb05252a3134c6842aa6bd38208ad1355d2bcf0704fa33"
     },
     {
-      "bytes": 1203,
+      "bytes": 1431,
       "path": "templates/RUN_RECORD_TEMPLATE.json",
-      "sha256": "fe476afb66eb948a735d24bdcad57a629a635144a4976cd2a44c29aed75df6d6"
+      "sha256": "90c71b6efa59ef275ccf6bbae2093652d1b9155196a6ce9bbef975fa0e5b547f"
     },
     {
       "bytes": 717,
@@ -142,9 +147,9 @@
       "sha256": "ffe2be1794f555e1b2af3336e60b51887a828049d75aba98b0f69d326e2a0dea"
     },
     {
-      "bytes": 10675,
+      "bytes": 11307,
       "path": "validate_package.py",
-      "sha256": "4ae5b05c6e9b5c1436f842ee8f4fa755e66220f1067dfc4f311ada89c555034a"
+      "sha256": "fb81e2f4538d16ad4df910c2cc91516196358af2192113b6651e543cfd5426a0"
     },
     {
       "bytes": 6,

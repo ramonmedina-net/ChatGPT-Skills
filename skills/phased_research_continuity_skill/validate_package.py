@@ -41,6 +41,9 @@ REQUIRED_TEMPLATES = [
     "templates/TRUSTED_BASE_CANDIDATE_VALIDATION_TEMPLATE.md",
     "templates/EVIDENCE_OBJECT_INDEX_TEMPLATE.csv",
 ]
+REQUIRED_FILES = [
+    "build_package.py",
+]
 
 def sha256(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
@@ -144,6 +147,10 @@ def main() -> int:
                 if rel not in file_names:
                     issues.append(f"missing required template: {rel}")
                     validation_checks["required_content"] = "FAIL"
+            for rel in REQUIRED_FILES:
+                if rel not in file_names:
+                    issues.append(f"missing required package file: {rel}")
+                    validation_checks["required_content"] = "FAIL"
             role_map = json.loads(read("templates/MODEL_ROLE_MAP_TEMPLATE.json"))
             if not all(k in role_map for k in ["workhorse", "judgment", "escalation_audit"]):
                 issues.append("model role map missing roles")
@@ -176,6 +183,11 @@ def main() -> int:
             if prompt.get("append_only") is not True:
                 issues.append("prompt provenance template must be append-only")
                 validation_checks["required_content"] = "FAIL"
+            builder = read("build_package.py").decode()
+            for phrase in ["canonical_bytes", "FIXED_ZIP_TIMESTAMP", "PACKAGE_MANIFEST.json", "ZIP_STORED"]:
+                if phrase not in builder:
+                    issues.append(f"package builder missing required behavior: {phrase}")
+                    validation_checks["required_content"] = "FAIL"
             if EXPECTED_RELEASE_NAME not in read("README.md").decode():
                 issues.append("README release name mismatch")
                 validation_checks["required_content"] = "FAIL"
